@@ -11,6 +11,19 @@
         "runtime": {
           "bin/placeholder/Domain.dll": {}
         }
+      },
+      "GrpcClient/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GrpcClient.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GrpcClient.dll": {}
+        }
       }
     }
   },
@@ -19,11 +32,17 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "GrpcClient/1.0.0": {
+      "type": "project",
+      "path": "../GrpcClient/GrpcClient.csproj",
+      "msbuildProject": "../GrpcClient/GrpcClient.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Domain >= 1.0.0"
+      "Domain >= 1.0.0",
+      "GrpcClient >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -53,6 +72,9 @@
           "projectReferences": {
             "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj"
+            },
+            "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj": {
+              "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj"
             }
           }
         }
