@@ -1,3 +1,8 @@
+using GrpcClient.ClientImplementations;
+using GrpcClient.ClientInterfaces;
+using Logic.Logic;
+using Logic.LogicInterfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +12,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddScoped<IPlayerLogic, PlayerLogic>();
+builder.Services.AddScoped<IFootballPlayerGrpcClient, PlayerGrpcClient>();
+
 var app = builder.Build();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
