@@ -1,0 +1,43 @@
+﻿@page "/CreateCoach"
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@inject ICoachService CoachService
+
+<div class="card">
+    <h3>Create User</h3>
+    <div class="form-group field">
+        <label>User name:</label>
+        <input type="text" @bind="name" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="button-row">
+        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
+    </div>
+</div>
+@code {
+    private string name = "";
+    private string resultMsg = "";
+    private string color = "";
+     
+    private async Task Create()
+    {
+        resultMsg = "";
+ 
+        try
+        {
+            await CoachService.CreateAsync(new CoachCreationDto(name));
+            name = "";
+            resultMsg = "Coach successfully created";
+            color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
+    }  
+}
