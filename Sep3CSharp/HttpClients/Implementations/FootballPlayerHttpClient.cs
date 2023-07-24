@@ -39,5 +39,21 @@ public class FootballPlayerHttpClient : IFootballPlayerService
         })!;
         return player;
     }
-    
+
+    public async Task<List<Player>> GetAllPlayersAsync()
+    {
+        string uri = "/player";
+        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        List<Player> users = JsonSerializer.Deserialize<List<Player>>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return users;
+    }
 }

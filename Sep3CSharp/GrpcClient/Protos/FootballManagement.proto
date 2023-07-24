@@ -12,12 +12,24 @@ message PlayerMessage {
   string name = 2;
 
 }
+message AllPlayersRequest{
+
+}
 
 message StringRequest {
   string string = 1;
 }
 
+
+message ListPlayerMessage {
+  repeated PlayerMessage players = 1;
+}
+
+
+
 service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
+  rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
+
 }

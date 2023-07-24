@@ -1,0 +1,53 @@
+@page "/ViewPlayers"
+@using Domain.Model
+@using HttpClients.ClientInterfaces
+@inject IFootballPlayerService PlayerService
+
+<h3 style="text-align: center">Overview of all players</h3>
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div>
+        <span>@msg</span>
+    </div>
+}
+
+@if (players == null)
+{
+    <span>Loading..</span>
+}
+else if (!players.Any())
+{
+    <span>No players found</span>
+}
+else
+{
+    <div class="users-container">
+        @foreach (Player player in players)
+        {
+            <div class="user-card">
+                <label>@player.Name</label>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private IEnumerable<Player>? players;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            players = await PlayerService.GetAllPlayersAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    
+    }
+}
