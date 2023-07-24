@@ -1,0 +1,35 @@
+syntax = "proto3";
+option csharp_namespace = "GrpcServices";
+option java_multiple_files = true;
+package Domain;
+
+message PlayerCreationDTOMessage {
+  string name = 1;
+}
+
+message PlayerMessage {
+  int32 id = 1;
+  string name = 2;
+
+}
+message AllPlayersRequest{
+
+}
+
+message StringRequest {
+  string string = 1;
+}
+
+
+message ListPlayerMessage {
+  repeated PlayerMessage players = 1;
+}
+
+
+
+service FootballPlayerService {
+  rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
+  rpc getByUsername (StringRequest) returns (PlayerMessage);
+  rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
+
+}

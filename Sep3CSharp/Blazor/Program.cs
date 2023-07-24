@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Blazor.Data;
+using DefaultNamespace;
+using HttpClients;
+using HttpClients.ClientInterfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddHttpClient<ITeamService, TeamHttpClient>();
+builder.Services.AddHttpClient<IFootballPlayerService, FootballPlayerHttpClient>();
+
+builder.Services.AddScoped(sp => new HttpClient
+{
+    BaseAddress = new Uri("https://localhost:7091")
+});
 
 var app = builder.Build();
 
@@ -18,6 +28,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
 
 app.UseHttpsRedirection();
 
