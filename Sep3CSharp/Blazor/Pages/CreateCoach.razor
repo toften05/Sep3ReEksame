@@ -13,12 +13,50 @@
             <label style="color: @color">@resultMsg</label>
         }
     </div>
+    <div class="form-group field">
+        <label>Birthday:</label>
+        <input type="text" @bind="birthday" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Initials:</label>
+        <input type="text" @bind="initials" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Email:</label>
+        <input type="text" @bind="email" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Role:</label>
+        <input type="text" @bind="role" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+   
     <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
+        <button @onclick="Create" 
+                disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
     </div>
 </div>
 @code {
     private string name = "";
+    public string birthday = "";
+    public string initials = "";
+    public string email = "";
+    public string role = "";
     private string resultMsg = "";
     private string color = "";
      
@@ -28,8 +66,12 @@
  
         try
         {
-            await CoachService.CreateAsync(new CoachCreationDto(name));
+            await CoachService.CreateAsync(new CoachCreationDto(name, birthday, initials, email, role));
             name = "";
+            birthday = "";
+            initials = "";
+            email = "";
+            role = "";
             resultMsg = "Coach successfully created";
             color = "green";
         }
