@@ -6,4 +6,6 @@
     public interface IFootballPlayerService
     {
         Task<Player> Create(PlayerCreationDTO dto);
-    }
+        Task<List<Player>> GetAllPlayersAsync();
+
+    }   

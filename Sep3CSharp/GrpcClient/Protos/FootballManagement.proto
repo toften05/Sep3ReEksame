@@ -22,17 +22,29 @@ message PlayerMessage {
   int32 id = 1;
   string name = 2;
 }
+message AllPlayersRequest{
+
+}
 
 message StringRequest {
   string string = 1;
 }
 
-service TeamService{
-  rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
-  
+
+message ListPlayerMessage {
+  repeated PlayerMessage players = 1;
 }
+
 
 service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
+  rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
+
 }
+=======
+service TeamService{
+  rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
+}
+
+

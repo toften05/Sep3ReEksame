@@ -34,4 +34,18 @@ public async Task<ActionResult<Player>> CreateAsync(PlayerCreationDTO dto)
         return StatusCode(500, e.Message);
     }
 }
+[HttpGet]
+public async Task<ActionResult<List<Player>>> GetAsync()
+{
+    try
+    {
+        List<Player> players = await playerLogic.GetAsync();
+        return Ok(players);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e);
+        return StatusCode(500, e.Message);
+    }
+}
 }

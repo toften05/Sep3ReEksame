@@ -27,9 +27,13 @@ public class PlayerLogic : IPlayerLogic
         Player created = await _footballPlayerGrpcClient.CreateAsync(playerToCreate);
     
         return created;
-
     }
-    
+
+    public Task<List<Player>> GetAsync()
+    {
+        return _footballPlayerGrpcClient.GetAsync();}
+
+
     private static void ValidateData(PlayerCreationDTO playerToCreate)
     {
         string playerName = playerToCreate.Name;
