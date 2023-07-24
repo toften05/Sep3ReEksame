@@ -1,6 +1,7 @@
 using Domain;
 using Domain.DTOs;
 using Domain.Model;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcClient.ClientInterfaces;
 using GrpcClient.GrpcClientTypeHandlers;
@@ -39,5 +40,16 @@ public class PlayerGrpcClient : IFootballPlayerGrpcClient
         }
     }
 
+    public async Task<List<Player>> GetAsync()
+    {
+        var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
+        ListPlayerMessage replyMessage = await client.getAllPlayersAsync(new AllPlayersRequest());
+        List<Player> playersToReturn = FootballPlayerGrpcHandler.FromMessageToPlayers(replyMessage);
+        return playersToReturn;
+    }
+
 }
+
+
+
 
