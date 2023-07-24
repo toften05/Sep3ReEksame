@@ -1,3 +1,5 @@
+
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.io.IOException;
@@ -11,6 +13,7 @@ public class main
     Server server = ServerBuilder
         .forPort(9090)
         .addService(new FootballPlayerServiceImpl())
+            .addService(new TeamServiceImpl())
         .build()
         .start();
         System.out.println("Server Started");

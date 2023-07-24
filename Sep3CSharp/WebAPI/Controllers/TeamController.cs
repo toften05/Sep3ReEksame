@@ -19,13 +19,12 @@ public class TeamController : ControllerBase
         _teamLogic = teamLogic;
     }
 
-    
-    public async Task<ActionResult<Team>> createAsync([FromBody]TeamDtos.TeamCreationDto dto)
+    [HttpPost]
+    public async Task<ActionResult<Team>> createAsync([FromBody]TeamDtos dto)
     {
         try
         {
             Team team = await _teamLogic.createAsync(dto);
-
             return Created($"/team/{team.teamName}", team);
         }
 
