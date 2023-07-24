@@ -4,6 +4,6 @@ namespace Logic.Teams;
 
 public interface ITeamLogic
 {
-    Task<Team> createAsync(TeamDtos.TeamCreationDto dto);
+    Task<Team> createAsync(TeamDtos dto);
    
 }

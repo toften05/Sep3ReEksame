@@ -1,6 +1,6 @@
 ﻿using Domain.DTOs;
 using Domain.Model;
-using GrpcClient.ClientInterface;
+using GrpcClient.ClientInterfaces;
 using Logic.Teams;
 
 namespace Logic.Logic;
@@ -14,7 +14,7 @@ public class TeamLogic : ITeamLogic
         _teamClient = teamClient;
     }
 
-    public async Task<Team> createAsync(TeamDtos.TeamCreationDto dto)
+    public async Task<Team> createAsync(TeamDtos dto)
     {
         Team result = await _teamClient.Create(dto);
 
