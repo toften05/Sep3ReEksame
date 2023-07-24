@@ -10,6 +10,7 @@ public class StartServer
     Server server = ServerBuilder
         .forPort(9090)
         .addService(new FootballPlayerServiceImpl())
+            .addService(new TeamServiceImpl())
         .build()
         .start();
         System.out.println("Server Started");

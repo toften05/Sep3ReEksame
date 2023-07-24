@@ -10,9 +10,7 @@ import java.sql.SQLException;
 public class TeamDbCommands {
 
     public void createTeam(Connection connection, Team team){
-        String sql = "INSERT INTO SoccerTeam(teamName) VALUES(?); " +
-                     "INSERT INTO SoccerTeam(division) VALUES (?);" +
-                     "INSERT INTO SoccerTeam(initials) VALUES (?);";
+        String sql = "INSERT INTO SoccerTeam(teamname, initials, division) VALUES(?,?,?); ";
         PreparedStatement preparedStatement;
 
         try{
