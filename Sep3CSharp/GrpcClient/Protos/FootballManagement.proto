@@ -16,6 +16,15 @@ message AllPlayersRequest{
 
 }
 
+message CoachCreationDtoMessage {
+  string name = 1;
+}
+
+message CoachMessage {
+  int32 id = 1;
+  string name = 2;  
+}
+
 message StringRequest {
   string string = 1;
 }
@@ -31,5 +40,9 @@ service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
   rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
+}
 
+service CoachService {
+  rpc CreateCoach (CoachCreationDtoMessage) returns (CoachMessage);
+  rpc getByName (StringRequest) returns (CoachMessage);
 }

@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "8LORl6hOk5O66WPxKt2FShRbyituHklIrN8iffL0GUkJ5wF7ezebki+Dw7oXP+PKqSGZsRVJXuFOHOwn4AOfQg==",
+  "dgSpecHash": "BrZZnd7dURodGro6qYqqfHcxT1IiQhapsFRIPBrVGi7LfHK8CgvPjKJKyzevRJE+fS3+e1WctlrtGgtjQZXwnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\benja\\.nuget\\packages\\google.protobuf\\3.24.0-rc2\\google.protobuf.3.24.0-rc2.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\grpc.core\\2.46.6\\grpc.core.2.46.6.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\grpc.core.api\\2.55.0\\grpc.core.api.2.55.0.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\grpc.net.client\\2.55.0\\grpc.net.client.2.55.0.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\grpc.net.common\\2.55.0\\grpc.net.common.2.55.0.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
+    "C:\\Users\\benja\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -13,6 +13,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddHttpClient<ITeamService, TeamHttpClient>();
 builder.Services.AddHttpClient<IFootballPlayerService, FootballPlayerHttpClient>();
+builder.Services.AddHttpClient<ICoachService, CoachHttpClient>();
 
 builder.Services.AddScoped(sp => new HttpClient
 {

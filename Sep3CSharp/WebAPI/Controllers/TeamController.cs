@@ -19,7 +19,7 @@ public class TeamController : ControllerBase
         _teamLogic = teamLogic;
     }
 
-    
+    [HttpPost]
     public async Task<ActionResult<Team>> createAsync([FromBody]TeamDtos.TeamCreationDto dto)
     {
         try
