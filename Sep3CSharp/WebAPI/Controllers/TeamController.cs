@@ -1,4 +1,4 @@
-﻿using Domain.DTOs;
+using Domain.DTOs;
 using Domain.Model;
 using Logic.Teams;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,7 @@
 using GrpcClient.ClientImplementations;
 using GrpcClient.ClientInterfaces;
 using Logic.Logic;
+using Logic.LogicInterface;
 using Logic.LogicInterfaces;
 using Logic.Teams;
 
@@ -16,8 +17,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlayerLogic, PlayerLogic>();
 builder.Services.AddScoped<IFootballPlayerGrpcClient, PlayerGrpcClient>();
+
+builder.Services.AddScoped<ICoachLogic, CoachLogic>();
+builder.Services.AddScoped<ICoachGrpcClient, CoachGrpcClient>();
+
 builder.Services.AddScoped<ITeamLogic, TeamLogic>();
 builder.Services.AddScoped<ITeamClient, TeamGrpcClient>();
+
 
 var app = builder.Build();
 

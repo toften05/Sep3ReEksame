@@ -13,6 +13,7 @@ public class main
     Server server = ServerBuilder
         .forPort(9090)
         .addService(new FootballPlayerServiceImpl())
+            .addService(new FootballCoachImpl())
             .addService(new TeamServiceImpl())
         .build()
         .start();

@@ -48,6 +48,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
     responseObserver.onNext(response);
     responseObserver.onCompleted();
+
   }
 
   public void getByUsername(StringRequest request, StreamObserver<PlayerMessage> responseObserver) {
