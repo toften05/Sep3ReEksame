@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+
     <data-source source="LOCAL" name="rrlolsrq@snuffleupagus.db.elephantsql.com" uuid="9d6c2686-8ed5-4011-8111-21da919ec368">
+
+    <data-source source="LOCAL" name="postgres" uuid="55a10a99-629e-4a66-8a61-b266f429b6e0">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:///postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - rrlolsrq@snuffleupagus.db.elephantsql.com" uuid="5ffde0a5-7053-48ba-aeb3-6d1a2bf47761">
+
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

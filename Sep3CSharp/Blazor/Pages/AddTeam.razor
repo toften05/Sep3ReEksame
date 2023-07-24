@@ -1,35 +1,71 @@
 ﻿@page "/addTeam"
+@using HttpClients
+@using Domain.DTOs
+@inject ITeamService TeamService
 
 <PageTitle>addTeam</PageTitle>
 
-<h1>create foodball team</h1>
+<h1>create football team</h1>
 
 <div class="form-group">
     <label for="teamName">Team Name:</label>
-    <input id="teamName" @bind="@teamName" class="form-control" />
+    <input type="text" @bind="@teamName" @bind:event="oninput" />
+    @if (!string.IsNullOrEmpty(resultMsg))
+    {
+        <label style="color: @color">@resultMsg</label>
+    }
 </div>
 
 <div class="form-group">
     <label for="division">Division:</label>
-    <input id="division" @bind="@division" class="form-control" />
+    <input type="text" @bind="@division" @bind:event="oninput" />
+    @if (!string.IsNullOrEmpty(resultMsg))
+    {
+        <label style="color: @color">@resultMsg</label>
+    }
 </div>
 
-<button class="btn btn-primary" @onclick="CreateTeam">Create Team</button>
+<div class="form-group">
+    <label for="initials">Initials:</label>
+    <input type="text" @bind="@initials" @bind:event="oninput" />
+     @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+</div>
 
-@if (teamCreated)
-{
-    <p class="text-success">Team successfully created!</p>
-    <p><strong>Team Name:</strong> @teamName</p>
-    <p><strong>Division:</strong> @division</p>
-}
+<div class="button-row">
+        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(division))" class="acceptbtn">Create</button>
+    </div>
+
 
 @code {
-    private string teamName;
-    private string division;
-    private bool teamCreated;
+    private string teamName = "";
+    private string division = "";
+    private string initials = "";
+    private string resultMsg = "";
+    private string color = "";
+    
 
-    private void CreateTeam()
+    private async Task Create()
     {
-        teamCreated = true;
+        try
+        {
+            await TeamService.CreateAsync(new TeamDtos(teamName, division, initials));
+            teamName = "";
+            division = "";
+            initials = "";
+            resultMsg = "Team successfully created";
+            color = "green";
+  
+            
+        }
+        catch (Exception e)
+        {
+            
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
     }
 }

@@ -1,4 +1,9 @@
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\grpc-java\Domain\FootballPlayerServiceGrpc.java
+
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\TeamMessageOrBuilder.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\TeamMessage.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\TeamServiceImpl.java
+
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\FootballManagement.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerCreationDTOMessageOrBuilder.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\FootballPlayerCommands\FootballPlayerDbCommands.java
@@ -6,6 +11,7 @@ C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\FootballPlayerService
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\StringRequest.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\main.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\FootballPlayerCommands\FootballPlayerDbCommandsInterface.java
+
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\DatabaseConnection\DatabaseConnection.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerMessage.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerMessageOrBuilder.java
@@ -16,3 +22,18 @@ C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\FootballPlay
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\Shared\FootballPlayer.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\DatabaseConnection\DatabaseConnectionInterface.java
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\Shared\FootballCoach.java
+
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\Shared\Team.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\TeamCreationDTOMessage.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\DatabaseConnection\DatabaseConnection.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerMessage.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerMessageOrBuilder.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\grpc-java\Domain\TeamServiceGrpc.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\FootballPlayerCommands\ITeamDbCommand.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\PlayerCreationDTOMessage.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\StringRequestOrBuilder.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\FootballPlayerCommands\TeamDbCommands.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\Shared\FootballPlayer.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\src\main\java\database\DatabaseConnection\DatabaseConnectionInterface.java
+C:\Users\jacob\Desktop\Sep3ReEksame\Sep3Java\target\generated-sources\protobuf\java\Domain\TeamCreationDTOMessageOrBuilder.java
+

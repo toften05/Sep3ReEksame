@@ -1,10 +1,20 @@
-﻿using Domain.Model;
+using Domain.Model;
 
 namespace Domain.DTOs;
 
 public class TeamDtos
 {
-    public record TeamCreationDto(
-        string teamName, string division, List<Player> playersOnTeam, List<Coach> coachesOnTeam
-    );
+    public string teamName { get; set; }
+    public string division { get; set; }
+    
+    public string initials { get; set; }
+    public List<Player> playersOnTeam { get; set; }
+
+    public TeamDtos(string teamName, string division, string initials)
+    {
+        this.teamName = teamName;
+        this.division = division;
+        this.initials = initials;
+        playersOnTeam = new List<Player>();
+    }
 }

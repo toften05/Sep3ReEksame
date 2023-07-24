@@ -3,6 +3,7 @@ C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.Ge
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\Domain.deps.json
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\Domain.dll
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\ref\Domain.dll
@@ -15,6 +16,7 @@ C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.dll
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\ref\Domain.dll
 C:\Users\benja\Documents\GitHub\Sep3ReEksame\Sep3CSharp\Domain\obj\Debug\net6.0\Domain.pdb
+
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\Domain.deps.json
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\Domain.dll
 C:\Users\jacob\Desktop\Sep3ReEksame\Sep3CSharp\Domain\bin\Debug\net6.0\ref\Domain.dll

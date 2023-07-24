@@ -1,7 +1,4 @@
-import Domain.FootballPlayerServiceGrpc;
-import Domain.PlayerCreationDTOMessage;
-import Domain.PlayerMessage;
-import Domain.StringRequest;
+import Domain.*;
 import Shared.FootballPlayer;
 import database.DatabaseConnection.DatabaseConnection;
 import database.FootballPlayerCommands.FootballPlayerDbCommands;
@@ -10,7 +7,29 @@ import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
 
+
 public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.FootballPlayerServiceImplBase {
+
+  @Override public void getAllPlayers(AllPlayersRequest request, StreamObserver<ListPlayerMessage> responseObserver)
+  {
+    System.out.println("getAllPlayers called");
+    DatabaseConnection db = new DatabaseConnection();
+    Connection connection = db.getConnection();
+    FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+
+    ListPlayerMessage.Builder response = ListPlayerMessage.newBuilder();
+
+    for (FootballPlayer player : dbCommands.getAllFootballPlayers(connection)) {
+      PlayerMessage playerMessage = PlayerMessage.newBuilder()
+          .setId(player.getId())
+          .setName(player.getName())
+          .build();
+      response.addPlayers(playerMessage);
+    }
+
+    responseObserver.onNext(response.build());
+    responseObserver.onCompleted();
+  }
 
   @Override
   public void createPlayer(PlayerCreationDTOMessage request, StreamObserver<PlayerMessage> responseObserver) {
