@@ -6,6 +6,7 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.FootballPlayerServiceImplBase {
@@ -49,6 +50,12 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
     responseObserver.onNext(response);
     responseObserver.onCompleted();
 
+    try {
+      connection.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
   }
 
   @Override
@@ -71,6 +78,12 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
       responseObserver.onError(Status.NOT_FOUND
           .withDescription("Player with username " + request.getString() + " not found")
           .asRuntimeException());
+    }
+
+    try {
+      connection.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 

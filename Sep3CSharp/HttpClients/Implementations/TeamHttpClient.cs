@@ -23,6 +23,7 @@ public class TeamHttpClient : ITeamService
 
     public async Task<Team> CreateAsync(TeamDtos dto)
     {
+        Console.WriteLine($"Base address: {client.BaseAddress}");
 
         HttpResponseMessage response = await client.PostAsJsonAsync("/team",dto);
         string result = await response.Content.ReadAsStringAsync();

@@ -20,7 +20,7 @@ public class TeamController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Team>> createAsync([FromBody]TeamDtos dto)
+    public async Task<ActionResult<Team>> createAsync(TeamDtos dto)
     {
         try
         {

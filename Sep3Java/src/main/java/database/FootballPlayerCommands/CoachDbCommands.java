@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class CoachDbCommands {
 
     public void createFootballCoach(Connection connection, FootballCoach coach){
-        String sql = "INSERT INTO SoccerCoach(fullname, dateofbirth, email, role, initals, VALUES(?,?,?,?,?);";
+        String sql = "INSERT INTO SoccerCoach(fullname, dateofbirth, email, role, initials) VALUES(?,?,?,?,?);";
 
         PreparedStatement preparedStatement;
 
@@ -20,7 +20,8 @@ public class CoachDbCommands {
            preparedStatement.setString(3, coach.getEmail());
            preparedStatement.setString(4, coach.getRole());
            preparedStatement.setString(5, coach.getInitials());
-            preparedStatement.executeUpdate();
+           preparedStatement.executeUpdate();
+
             System.out.println("Football coach created");
         }
         catch (SQLException e) {

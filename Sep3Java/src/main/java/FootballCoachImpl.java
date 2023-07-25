@@ -1,5 +1,6 @@
 import Domain.CoachCreationDtoMessage;
 import Domain.CoachMessage;
+import Domain.CoachServiceGrpc;
 import Domain.FootballPlayerServiceGrpc;
 import Shared.FootballCoach;
 import database.DatabaseConnection.DatabaseConnection;
@@ -7,10 +8,10 @@ import database.FootballPlayerCommands.CoachDbCommands;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
-public class FootballCoachImpl extends FootballPlayerServiceGrpc.FootballPlayerServiceImplBase
-{
-    public void createCoach(CoachCreationDtoMessage request, StreamObserver<CoachMessage> responseObserver){
+public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
+    public void createCoach(CoachCreationDtoMessage request, StreamObserver<CoachMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         CoachDbCommands dbCommands = new CoachDbCommands();
@@ -28,7 +29,11 @@ public class FootballCoachImpl extends FootballPlayerServiceGrpc.FootballPlayerS
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
-
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

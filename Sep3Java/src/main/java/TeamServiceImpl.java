@@ -9,6 +9,7 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
 
@@ -31,6 +32,11 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
