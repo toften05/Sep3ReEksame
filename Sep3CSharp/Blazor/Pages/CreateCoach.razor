@@ -1,0 +1,85 @@
+﻿@page "/CreateCoach"
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@inject ICoachService CoachService
+
+<div class="card">
+    <h3>Create User</h3>
+    <div class="form-group field">
+        <label>Username:</label>
+        <input type="text" @bind="name" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Birthday:</label>
+        <input type="text" @bind="birthday" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Initials:</label>
+        <input type="text" @bind="initials" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Email:</label>
+        <input type="text" @bind="email" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+    <div class="form-group field">
+        <label>Role:</label>
+        <input type="text" @bind="role" @bind:event="oninput"/>
+        @if (!string.IsNullOrEmpty(resultMsg))
+        {
+            <label style="color: @color">@resultMsg</label>
+        }
+    </div>
+   
+    <div class="button-row">
+        <button @onclick="Create" 
+                disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
+    </div>
+</div>
+@code {
+    private string name = "";
+    public string birthday = "";
+    public string initials = "";
+    public string email = "";
+    public string role = "";
+    private string resultMsg = "";
+    private string color = "";
+     
+    private async Task Create()
+    {
+        resultMsg = "";
+ 
+        try
+        {
+            await CoachService.CreateAsync(new CoachCreationDto(name, birthday, initials, email, role));
+            name = "";
+            birthday = "";
+            initials = "";
+            email = "";
+            role = "";
+            resultMsg = "Coach successfully created";
+            color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
+    }  
+}
