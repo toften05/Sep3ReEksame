@@ -8,6 +8,6 @@ public interface IPlayerDAO
 {
     Task<Player> CreateAsync(Player player);
     Task<Player?> GetByPlayerNameAsync(string playerName);
-    public Task<IEnumerable<Player>> GetAllPlayersAsync(GetAllPlayersDTO searchParameters);
+   // public Task<IEnumerable<Player>> GetAllPlayersAsync(GetAllPlayersDTO searchParameters);
 
 }

@@ -14,7 +14,7 @@ public class CoachLogic : ICoachLogic
     {
         _coachGrpcClient = coachGrpcClient;
     }
-
+/*
     public async Task<Coach> CreateCoachAsync(CoachCreationDto createCoach)
     {
         Coach? existing = await _coachGrpcClient.GetByCoachNameAsync(createCoach.fullName);
@@ -27,6 +27,13 @@ public class CoachLogic : ICoachLogic
         Coach created = await _coachGrpcClient.CreateAsync(createCoach);
     
         return created;
+    }
+    */
+    public async Task<Coach> CreateCoachAsync(CoachCreationDto dto)
+    {
+        Coach result = await _coachGrpcClient.CreateAsync(dto);
+
+        return result;
     }
     
     

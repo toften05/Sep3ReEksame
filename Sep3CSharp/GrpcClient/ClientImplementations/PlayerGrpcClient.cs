@@ -19,7 +19,7 @@ public class PlayerGrpcClient : IFootballPlayerGrpcClient
     public async Task<Player> CreateAsync(PlayerCreationDTO PlayerDto)
     {
         var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
-
+        
         PlayerMessage reply = await client.CreatePlayerAsync(FootballPlayerGrpcHandler.FromPlayerCreationDtoToMessage(PlayerDto));
         Player userToReturn = FootballPlayerGrpcHandler.FromMessageToPlayer(reply);
         return userToReturn;
