@@ -10,8 +10,8 @@ import java.sql.Connection;
 
 public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.FootballPlayerServiceImplBase {
 
-  @Override public void getAllPlayers(AllPlayersRequest request, StreamObserver<ListPlayerMessage> responseObserver)
-  {
+  @Override
+  public void getAllPlayers(AllPlayersRequest request, StreamObserver<ListPlayerMessage> responseObserver) {
     System.out.println("getAllPlayers called");
     DatabaseConnection db = new DatabaseConnection();
     Connection connection = db.getConnection();
@@ -21,9 +21,9 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
     for (FootballPlayer player : dbCommands.getAllFootballPlayers(connection)) {
       PlayerMessage playerMessage = PlayerMessage.newBuilder()
-          .setId(player.getId())
-          .setName(player.getName())
-          .build();
+              .setId(player.getId())
+              .setName(player.getName())
+              .build();
       response.addPlayers(playerMessage);
     }
 
@@ -51,6 +51,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
   }
 
+  @Override
   public void getByUsername(StringRequest request, StreamObserver<PlayerMessage> responseObserver) {
     DatabaseConnection db = new DatabaseConnection();
     Connection connection = db.getConnection();

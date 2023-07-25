@@ -45,8 +45,6 @@ message CoachMessage {
   string role = 6;
 }
 
-message AllPlayersRequest{}
-
 message StringRequest {
   string string = 1;
 }
@@ -71,7 +69,7 @@ service FootballPlayerService {
 
 service CoachService {
   rpc CreateCoach (CoachCreationDtoMessage) returns (CoachMessage);
-  rpc getByName (StringRequest) returns (CoachMessage);
+  //rpc getByName (StringRequest) returns (CoachMessage);
 }
 
   

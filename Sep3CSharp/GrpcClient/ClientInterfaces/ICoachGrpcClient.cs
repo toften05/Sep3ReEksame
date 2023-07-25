@@ -6,5 +6,5 @@ namespace GrpcClient.ClientInterfaces;
 public interface ICoachGrpcClient
 {
     Task<Coach> CreateAsync(CoachCreationDto coachDto);
-    Task<Coach?> GetByCoachNameAsync(string coachName);
+    //Task<Coach?> GetByCoachNameAsync(string coachName);
 }

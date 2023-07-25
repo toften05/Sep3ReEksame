@@ -11,31 +11,31 @@
   public class FootballPlayerDbCommands
   {
 
-  public List<FootballPlayer> getAllFootballPlayers(Connection connection){
-    String sql = "SELECT * FROM SoccerPlayer;";
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
-    List<FootballPlayer> footballPlayers = new ArrayList<>();
+    public List<FootballPlayer> getAllFootballPlayers(Connection connection){
+      String sql = "SELECT * FROM SoccerPlayer;";
+      PreparedStatement preparedStatement;
+      ResultSet resultSet;
+      List<FootballPlayer> footballPlayers = new ArrayList<>();
 
-    try {
-      preparedStatement = connection.prepareStatement(sql);
-      resultSet = preparedStatement.executeQuery();
+      try {
+        preparedStatement = connection.prepareStatement(sql);
+        resultSet = preparedStatement.executeQuery();
 
-      while (resultSet.next()) {
-        String name = resultSet.getString("name");
+        while (resultSet.next()) {
+          String name = resultSet.getString("name");
 
-        FootballPlayer footballPlayer = new FootballPlayer(name);
-        footballPlayers.add(footballPlayer);
+          FootballPlayer footballPlayer = new FootballPlayer(name);
+          footballPlayers.add(footballPlayer);
+        }
       }
+      catch (SQLException e)
+      {
+        throw new RuntimeException(e);
+      }
+      System.out.println("Football players returned");
+      System.out.println(footballPlayers);
+      return footballPlayers;
     }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(e);
-    }
-    System.out.println("Football players returned");
-    System.out.println(footballPlayers);
-    return footballPlayers;
-  }
 
     public void createFootballPlayer(Connection connection, FootballPlayer player) {
       String sql = "INSERT INTO SoccerPlayer(name) VALUES(?);";

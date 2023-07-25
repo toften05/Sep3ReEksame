@@ -3,7 +3,17 @@ option csharp_namespace = "GrpcServices";
 option java_multiple_files = true;
 package Domain;
 
+message  TeamCreationDTOMessage{
+  string teamName = 1;
+  string division = 2;
+  string initials = 3;
+}
 
+message  TeamMessage{
+  string teamName = 1;
+  string division = 2;
+  string initials = 3;
+}
 message PlayerCreationDTOMessage {
   string name = 1;
 }
@@ -35,21 +45,6 @@ message CoachMessage {
   string role = 6;
 }
 
-
-message  TeamCreationDTOMessage{
-  string teamName = 1;
-  string division = 2;
-  string initials = 3;
-}
-
-message  TeamMessage{
-  string teamName = 1;
-  string division = 2;
-  string initials = 3;
-}
-
-
-
 message StringRequest {
   string string = 1;
 }
@@ -58,8 +53,6 @@ message StringRequest {
 message ListPlayerMessage {
   repeated PlayerMessage players = 1;
 }
-
-
 
 
 service TeamService{
@@ -71,13 +64,12 @@ service TeamService{
 service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
-
   rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
 }
 
 service CoachService {
   rpc CreateCoach (CoachCreationDtoMessage) returns (CoachMessage);
-  rpc getByName (StringRequest) returns (CoachMessage);
+  //rpc getByName (StringRequest) returns (CoachMessage);
 }
 
   
