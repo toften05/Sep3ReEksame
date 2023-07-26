@@ -43,10 +43,19 @@ public class TeamHttpClient : ITeamService
 
     public async Task<List<Team>> getALlTeamsAsync()
     {
-        Console.Write("HttpCLient");
-        string uri = "/Teams";
+        Console.Write("HttpCLientTest");
+        
+        string uri = "/Team";
+        Console.Write(uri);
         HttpResponseMessage response = await client.GetAsync(uri);
+        Console.Write(response + "repsonse");
         string result = await response.Content.ReadAsStringAsync();
+        
+        
+        Console.WriteLine($"Response Status Code: {response.StatusCode}");
+        Console.WriteLine($"Response Content: {result}");
+        
+        
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(result);
