@@ -79,19 +79,8 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+FootballPlayer player = new FootballPlayer(request.getName(), request.getBirthday(), request.getEmail(), request.getRolle(), request.getTeamName(), request.getPosition());
 
-        long seconds = request.getBirthday().getSeconds();
-        Date sqlDate = new Date(seconds * 1000);
-        FootballPlayer player = new FootballPlayer
-                (request.getName(),
-                        sqlDate,
-                        request.getEmail(),
-                        request.getRolle(),
-                        request.getTeamName(),
-                        request.getPosition());
-        request.getTeamName();
-        request.getPosition();
-        System.out.println(player);
 
         dbCommands.createFootballPlayer(connection, player);
 
