@@ -22,14 +22,32 @@ else if (!players.Any())
 }
 else
 {
-    <div class="users-container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Team Name</th>
+            <th>Position</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach (Player player in players)
         {
-            <div class="user-card">
-                <label>@player.Name</label>
-            </div>
+            <tr>
+                <td>@player.Name</td>
+                <td>@player.DateOfBirth</td>
+                <td>@player.Email</td>
+                <td>@player.Role</td>
+                <td>@player.TeamName</td>
+                <td>@player.Position</td>
+                <td><button>edit player</button></td>
+            </tr>
         }
-    </div>
+        </tbody>
+    </table>
 }
 
 @code {

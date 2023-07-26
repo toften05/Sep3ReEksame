@@ -1,44 +1,74 @@
 @page "/CreateSoccerPlayer"
 @using Domain.DTOs
-@using DefaultNamespace
 @using HttpClients.ClientInterfaces
 @inject IFootballPlayerService FootballPlayerService
 
 <div class="card">
     <h3>Create User</h3>
-    <div class="form-group field">
-        <label>User name:</label>
-        <input type="text" @bind="name" @bind:event="oninput"/>
-        @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
-    </div>
-    <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
-    </div>
+    <EditForm Model="this">
+        <div class="form-group field">
+            <label>User name:</label>
+            <input type="text" @bind="name" @bind:event="oninput"/>
+            <label>Email:</label>
+            <input type="text" @bind="email" @bind:event="oninput"/>
+            <label>Rolle:</label>
+            <select @bind="rolle">
+                <option value="Kaptain">Kaptain</option>
+                <option value="Spiller">Spiller</option>
+                <option value="Bænkevarmer">Bænkevarmer</option>
+                <option value="Water boy">Water boy</option>
+                <!-- add more options as needed -->
+            </select>
+            <label>Date of birth:</label>
+            <InputDate @bind-Value="dateOfBirth"/>
+            <label>Position:</label>
+            <input type="text" @bind="position" @bind:event="oninput"/>
+            <label>Team:</label>
+            <select @bind="teamName">
+                <option value="Team Røv og Nøgler ">Team Røv og Nøgler</option>
+                <option value="Lokomotiv crazy legs">Lokomotiv crazy legs</option>
+                <option value="Røven af serie 6">Røven af serie 6</option>
+                <!-- add more options as needed -->
+            </select>
+
+            @if (!string.IsNullOrEmpty(resultMsg))
+            {
+                <label style="color: @color">@resultMsg</label>
+            }
+        </div>
+        <div class="button-row">
+            <button type="submit" @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
+        </div>
+    </EditForm>
 </div>
+
 @code {
-     private string name = "";
-     private string resultMsg = "";
-     private string color = "";
-     
-     private async Task Create()
-     {
-         resultMsg = "";
- 
-         try
-         {
-             await FootballPlayerService.Create(new PlayerCreationDTO(name));
-             name = "";
-             resultMsg = "Soccer Player successfully created";
-             color = "green";
-         }
-         catch (Exception e)
-         {
-             Console.WriteLine(e);
-             resultMsg = e.Message;
-             color = "red";
-         }
-     }  
+    private string name = "";
+    private DateTime dateOfBirth = DateTime.Today;
+    private string email = "";
+    private string rolle = "";
+    private string position = "";
+    private string teamName = "";
+    private string resultMsg = "";
+    private string color = "";
+
+    private async Task Create()
+    {
+        resultMsg = "";
+
+        try
+        {
+            await FootballPlayerService.Create(new PlayerCreationDTO(name, dateOfBirth, email, rolle, teamName, position));
+            name = "";
+            resultMsg = "Soccer Player successfully created";
+            color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
+    }
+
 }
