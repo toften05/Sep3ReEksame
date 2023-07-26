@@ -10,3 +10,34 @@
 /Sep3CSharp/GrpcClient/bin/
 /Sep3CSharp/Domain/obj/
 /Sep3CSharp/Domain/bin/
+
+# .NET Core
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dll
+*.exe
+*.pdb
+*.cache
+*.VisualState.xml
+.vs/
+
+# Rider
+.idea/
+
+# Tools
+_ReSharper.*
+*.resharper
+*.DotSettings.user
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
