@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/timestamp.proto";
 option csharp_namespace = "GrpcServices";
 option java_multiple_files = true;
 package Domain;
@@ -16,11 +17,21 @@ message  TeamMessage{
 }
 message PlayerCreationDTOMessage {
   string name = 1;
+  google.protobuf.Timestamp birthday = 2;
+  string email = 3;
+  string rolle = 4;
+  string teamName = 5;
+  string position = 6;
 }
 
 message PlayerMessage {
   int32 id = 1;
   string name = 2;
+  google.protobuf.Timestamp birthday = 3;
+  string email = 4;
+  string rolle = 5;
+  string teamName = 6; 
+  string position = 7; 
 }
 message AllPlayersRequest{
 }

@@ -45,6 +45,7 @@ public class FootballPlayerHttpClient : IFootballPlayerService
         string uri = "/player";
         HttpResponseMessage response = await _httpClient.GetAsync(uri);
         string result = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(result);
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(result);
