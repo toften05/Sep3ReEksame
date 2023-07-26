@@ -1,21 +1,45 @@
 syntax = "proto3";
 option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 package Domain;
 
 message PlayerCreationDTOMessage {
   string name = 1;
+  google.protobuf.Timestamp birthday = 2;
+  string email = 3;
+  string rolle = 4;
+  string teamName = 5;
+  string position = 6;
 }
 
 message PlayerMessage {
   int32 id = 1;
   string name = 2;
+  google.protobuf.Timestamp birthday = 3;
+  string email = 4;
+  string rolle = 5;
+  string teamName = 6;
+  string position = 7;
 }
 
 message StringRequest {
   string string = 1;
 }
 
+message AllPlayersRequest{
+
+}
+
+message ListPlayerMessage {
+  repeated PlayerMessage players = 1;
+}
+
+
+
 service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
+  rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
+  rpc deletePlayer (PlayerMessage) returns (google.protobuf.Empty);
 }
