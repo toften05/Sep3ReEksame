@@ -1,4 +1,4 @@
-﻿using Domain.DTOs;
+using Domain.DTOs;
 using Domain.Model;
 using Logic.Teams;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +20,11 @@ public class TeamController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Team>> createAsync([FromBody]TeamDtos.TeamCreationDto dto)
+    public async Task<ActionResult<Team>> createAsync(TeamDtos dto)
     {
         try
         {
             Team team = await _teamLogic.createAsync(dto);
-
             return Created($"/team/{team.teamName}", team);
         }
 

@@ -7,15 +7,24 @@ namespace HttpClients;
 
 public class TeamHttpClient : ITeamService
 {
-    private HttpClient client;
+    private readonly HttpClient client;
 
     public TeamHttpClient(HttpClient client)
     {
-        this.client = client;
+        var handler = new HttpClientHandler()
+        {
+            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        this.client = new HttpClient(handler);
+        this.client.BaseAddress = new Uri("https://localhost:7091");
     }
-    
-    public async Task<Team> CreateAsync(TeamDtos.TeamCreationDto dto)
+
+   
+
+    public async Task<Team> CreateAsync(TeamDtos dto)
     {
+        Console.WriteLine($"Base address: {client.BaseAddress}");
+
         HttpResponseMessage response = await client.PostAsJsonAsync("/team",dto);
         string result = await response.Content.ReadAsStringAsync();
 

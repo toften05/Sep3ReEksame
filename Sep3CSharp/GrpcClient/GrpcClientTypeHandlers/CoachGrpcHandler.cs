@@ -21,6 +21,10 @@ public class CoachGrpcHandler
         CoachCreationDtoMessage coachToReturn = new CoachCreationDtoMessage
         {
            Name = coachCreate.fullName,
+           Birthday = coachCreate.birthday,
+           Initials = coachCreate.initials,
+           Email = coachCreate.email,
+           Role = coachCreate.role
         };
         return coachToReturn;
     }
@@ -30,6 +34,10 @@ public class CoachGrpcHandler
         Coach coachToReturn = new Coach
         {
             fullName = coach.Name,
+            birthday = coach.Birthday,
+            initials = coach.Initials,
+            email = coach.Email,
+            role = coach.Role,
             Id = coach.Id
         };
         return coachToReturn;

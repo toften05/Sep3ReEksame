@@ -21,7 +21,7 @@ public class CoachGrpcClient : ICoachGrpcClient
         Coach coachToReturn = CoachGrpcHandler.FromMessageToCoach(reply);
         return coachToReturn;
     }
-
+/*
     public async Task<Coach?> GetByCoachNameAsync(string coachName)
     {
         try
@@ -36,4 +36,5 @@ public class CoachGrpcClient : ICoachGrpcClient
             return null;
         }
     }
+    */
 }

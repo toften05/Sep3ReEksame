@@ -5,14 +5,10 @@
       "Google.Protobuf/3.24.0-rc2": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Google.Protobuf.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Google.Protobuf.dll": {}
         }
       },
       "Grpc.Core/2.46.6": {
@@ -22,14 +18,10 @@
           "System.Memory": "4.5.3"
         },
         "compile": {
-          "lib/netstandard2.0/Grpc.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Grpc.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Grpc.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Grpc.Core.dll": {}
         },
         "runtimeTargets": {
           "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so": {
@@ -60,14 +52,10 @@
           "System.Memory": "4.5.3"
         },
         "compile": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {}
         }
       },
       "Grpc.Net.Client/2.55.0": {
@@ -77,14 +65,10 @@
           "Microsoft.Extensions.Logging.Abstractions": "3.0.3"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Grpc.Net.Client.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Client.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Grpc.Net.Client.dll": {}
         }
       },
       "Grpc.Net.Common/2.55.0": {
@@ -93,27 +77,19 @@
           "Grpc.Core.Api": "2.55.0"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Grpc.Net.Common.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Common.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Grpc.Net.Common.dll": {}
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/3.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
       "System.Memory/4.5.3": {
@@ -338,19 +314,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\benja\\.nuget\\packages\\": {}
+    "C:\\Users\\jacob\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
+      "projectUniqueName": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
       "projectName": "Logic",
-      "projectPath": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
-      "packagesPath": "C:\\Users\\benja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Logic\\obj\\",
+      "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Logic\\Logic.csproj",
+      "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Logic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\benja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -362,11 +338,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj"
+            "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj": {
-              "projectPath": "C:\\Users\\benja\\Documents\\GitHub\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj"
+            "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj": {
+              "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj"
             }
           }
         }
