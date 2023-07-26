@@ -5,5 +5,7 @@ namespace HttpClients;
 
 public interface ITeamService
 {
-    Task<Team> CreateAsync(TeamDtos dto);
+    Task<Team> CreateAsync(TeamCreationDTO creationDto);
+
+    Task<List<Team>> getALlTeamsAsync();
 }

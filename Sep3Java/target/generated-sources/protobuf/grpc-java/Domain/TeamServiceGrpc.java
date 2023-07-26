@@ -46,6 +46,37 @@ public final class TeamServiceGrpc {
     return getCreateTeamMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<Domain.AllTeamsRequest,
+      Domain.ListTeamMessage> getGetAllTeamsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getAllTeams",
+      requestType = Domain.AllTeamsRequest.class,
+      responseType = Domain.ListTeamMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Domain.AllTeamsRequest,
+      Domain.ListTeamMessage> getGetAllTeamsMethod() {
+    io.grpc.MethodDescriptor<Domain.AllTeamsRequest, Domain.ListTeamMessage> getGetAllTeamsMethod;
+    if ((getGetAllTeamsMethod = TeamServiceGrpc.getGetAllTeamsMethod) == null) {
+      synchronized (TeamServiceGrpc.class) {
+        if ((getGetAllTeamsMethod = TeamServiceGrpc.getGetAllTeamsMethod) == null) {
+          TeamServiceGrpc.getGetAllTeamsMethod = getGetAllTeamsMethod =
+              io.grpc.MethodDescriptor.<Domain.AllTeamsRequest, Domain.ListTeamMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getAllTeams"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.AllTeamsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.ListTeamMessage.getDefaultInstance()))
+              .setSchemaDescriptor(new TeamServiceMethodDescriptorSupplier("getAllTeams"))
+              .build();
+        }
+      }
+    }
+    return getGetAllTeamsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -101,6 +132,13 @@ public final class TeamServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateTeamMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getAllTeams(Domain.AllTeamsRequest request,
+        io.grpc.stub.StreamObserver<Domain.ListTeamMessage> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllTeamsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -110,6 +148,13 @@ public final class TeamServiceGrpc {
                 Domain.TeamCreationDTOMessage,
                 Domain.TeamMessage>(
                   this, METHODID_CREATE_TEAM)))
+          .addMethod(
+            getGetAllTeamsMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                Domain.AllTeamsRequest,
+                Domain.ListTeamMessage>(
+                  this, METHODID_GET_ALL_TEAMS)))
           .build();
     }
   }
@@ -135,6 +180,14 @@ public final class TeamServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateTeamMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getAllTeams(Domain.AllTeamsRequest request,
+        io.grpc.stub.StreamObserver<Domain.ListTeamMessage> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetAllTeamsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +209,13 @@ public final class TeamServiceGrpc {
     public Domain.TeamMessage createTeam(Domain.TeamCreationDTOMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateTeamMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public Domain.ListTeamMessage getAllTeams(Domain.AllTeamsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetAllTeamsMethod(), getCallOptions(), request);
     }
   }
 
@@ -180,9 +240,18 @@ public final class TeamServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateTeamMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Domain.ListTeamMessage> getAllTeams(
+        Domain.AllTeamsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetAllTeamsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_TEAM = 0;
+  private static final int METHODID_GET_ALL_TEAMS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -204,6 +273,10 @@ public final class TeamServiceGrpc {
         case METHODID_CREATE_TEAM:
           serviceImpl.createTeam((Domain.TeamCreationDTOMessage) request,
               (io.grpc.stub.StreamObserver<Domain.TeamMessage>) responseObserver);
+          break;
+        case METHODID_GET_ALL_TEAMS:
+          serviceImpl.getAllTeams((Domain.AllTeamsRequest) request,
+              (io.grpc.stub.StreamObserver<Domain.ListTeamMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -267,6 +340,7 @@ public final class TeamServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new TeamServiceFileDescriptorSupplier())
               .addMethod(getCreateTeamMethod())
+              .addMethod(getGetAllTeamsMethod())
               .build();
         }
       }

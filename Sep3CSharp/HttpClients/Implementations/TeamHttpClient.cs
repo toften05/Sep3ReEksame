@@ -21,11 +21,11 @@ public class TeamHttpClient : ITeamService
 
    
 
-    public async Task<Team> CreateAsync(TeamDtos dto)
+    public async Task<Team> CreateAsync(TeamCreationDTO creationDto)
     {
         Console.WriteLine($"Base address: {client.BaseAddress}");
 
-        HttpResponseMessage response = await client.PostAsJsonAsync("/team",dto);
+        HttpResponseMessage response = await client.PostAsJsonAsync("/team",creationDto);
         string result = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)
@@ -41,5 +41,21 @@ public class TeamHttpClient : ITeamService
 
     }
 
-   
+    public async Task<List<Team>> getALlTeamsAsync()
+    {
+        Console.Write("HttpCLient");
+        string uri = "/Teams";
+        HttpResponseMessage response = await client.GetAsync(uri);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        List<Team> teams = JsonSerializer.Deserialize<List<Team>>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return teams;
+    }
 }

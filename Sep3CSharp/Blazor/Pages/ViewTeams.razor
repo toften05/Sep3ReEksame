@@ -1,0 +1,67 @@
+﻿@page "/ViewTeams"
+@using Domain.Model
+@using HttpClients
+
+@inject ITeamService teamService
+
+<h3 style="text-align: center">Overview of all teams</h3>
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div>
+        <span>@msg</span>
+    </div>
+}
+
+@if (teams == null)
+{
+    <span>Loading..</span>
+}
+else if (!teams.Any())
+{
+    <span>No teams found</span>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Team Name</th>
+            <th>Initials</th>
+            <th>Division</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Team team in teams)
+        {
+            <tr>
+                <td>@team.teamName</td>
+                <td>@team.initials</td>
+                <td>@team.division</td>
+                <td><button>edit player</button></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Team>? teams;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            teams = await teamService.getALlTeamsAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    
+    }
+}

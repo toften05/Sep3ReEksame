@@ -20,14 +20,29 @@ public class TeamController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Team>> createAsync(TeamDtos dto)
+    public async Task<ActionResult<Team>> createAsync(TeamCreationDTO creationDto)
     {
         try
         {
-            Team team = await _teamLogic.createAsync(dto);
+            Team team = await _teamLogic.createAsync(creationDto);
             return Created($"/team/{team.teamName}", team);
         }
 
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<Team>>> getAsync()
+    {
+        try
+        {
+            List<Team> teams = await _teamLogic.getAsync();
+            return Ok(teams);
+        }
         catch (Exception e)
         {
             Console.WriteLine(e);

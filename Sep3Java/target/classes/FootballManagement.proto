@@ -14,6 +14,12 @@ message  TeamMessage{
   string division = 2;
   string initials = 3;
 }
+
+message AllTeamsRequest{
+}
+message ListTeamMessage {
+  repeated TeamMessage teams = 1;
+}
 message PlayerCreationDTOMessage {
   string name = 1;
 }
@@ -21,10 +27,8 @@ message PlayerCreationDTOMessage {
 message PlayerMessage {
   int32 id = 1;
   string name = 2;
-
 }
 message AllPlayersRequest{
-
 }
 
 message CoachCreationDtoMessage {
@@ -33,7 +37,6 @@ message CoachCreationDtoMessage {
   string initials = 3;
   string email = 4;
   string role = 5;
-
 }
 
 message CoachMessage {
@@ -57,6 +60,7 @@ message ListPlayerMessage {
 
 service TeamService{
   rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
+  rpc getAllTeams(AllTeamsRequest) returns (ListTeamMessage);
 
 }
 
