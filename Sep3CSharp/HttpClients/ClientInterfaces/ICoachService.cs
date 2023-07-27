@@ -6,4 +6,6 @@ namespace HttpClients.ClientInterfaces;
 public interface ICoachService
 {
     Task<Coach> CreateAsync(CoachCreationDto coachDto);
+    
+    Task<List<Coach>> GetAllCoachesAsync();
 }

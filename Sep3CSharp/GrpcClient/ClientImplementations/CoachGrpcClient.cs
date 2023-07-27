@@ -21,7 +21,15 @@ public class CoachGrpcClient : ICoachGrpcClient
         Coach coachToReturn = CoachGrpcHandler.FromMessageToCoach(reply);
         return coachToReturn;
     }
-/*
+
+    public async Task<List<Coach>> GetAsync()
+    {
+        var client = CoachGrpcHandler.GetCoachClient();
+        ListCoachMessage replyMessage = await client.getAllCoachesAsync(new AllCoachesRequest());
+        List<Coach> coachesToReturn = CoachGrpcHandler.FromMessageToCoaches(replyMessage);
+        return coachesToReturn;
+    }
+    /*
     public async Task<Coach?> GetByCoachNameAsync(string coachName)
     {
         try

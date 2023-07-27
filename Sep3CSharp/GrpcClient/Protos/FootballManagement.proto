@@ -1,7 +1,8 @@
 syntax = "proto3";
-import "google/protobuf/timestamp.proto";
 option csharp_namespace = "GrpcServices";
 option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 package Domain;
 
 message  TeamCreationDTOMessage{
@@ -30,10 +31,16 @@ message PlayerMessage {
   google.protobuf.Timestamp birthday = 3;
   string email = 4;
   string rolle = 5;
-  string teamName = 6; 
-  string position = 7; 
+  string teamName = 6;
+  string position = 7;
 }
+
 message AllPlayersRequest{
+
+}
+
+message AllCoachesRequest{
+
 }
 
 message CoachCreationDtoMessage {
@@ -42,6 +49,7 @@ message CoachCreationDtoMessage {
   string initials = 3;
   string email = 4;
   string role = 5;
+
 }
 
 message CoachMessage {
@@ -62,27 +70,24 @@ message ListPlayerMessage {
   repeated PlayerMessage players = 1;
 }
 
+message ListCoachMessage {
+  repeated CoachMessage coaches = 1;
+}
 
 service TeamService{
   rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
 
 }
 
-
 service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
-  rpc getByUsername (StringRequest) returns (PlayerMessage);
   rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
+  rpc getByUsername (StringRequest) returns (PlayerMessage);
 }
+
 
 service CoachService {
   rpc CreateCoach (CoachCreationDtoMessage) returns (CoachMessage);
+  rpc getAllCoaches(AllCoachesRequest) returns (ListCoachMessage);
   //rpc getByName (StringRequest) returns (CoachMessage);
 }
-
-  
-
-
-
-
-
