@@ -69,6 +69,12 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
         responseObserver.onNext(response.build());
         responseObserver.onCompleted();
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -96,6 +102,11 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         System.out.println(response);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -119,6 +130,11 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
                     .withDescription("Player with username " + request.getString() + " not found")
                     .asRuntimeException());
         }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -133,7 +149,11 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
 
-
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
