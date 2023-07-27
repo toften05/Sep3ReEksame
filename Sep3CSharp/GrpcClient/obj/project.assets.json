@@ -5,10 +5,14 @@
       "Google.Protobuf/3.24.0-rc2": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Google.Protobuf.dll": {}
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {}
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Grpc.Core/2.46.6": {
@@ -18,10 +22,14 @@
           "System.Memory": "4.5.3"
         },
         "compile": {
-          "lib/netstandard2.0/Grpc.Core.dll": {}
+          "lib/netstandard2.0/Grpc.Core.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Grpc.Core.dll": {}
+          "lib/netstandard2.0/Grpc.Core.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtimeTargets": {
           "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so": {
@@ -52,10 +60,14 @@
           "System.Memory": "4.5.3"
         },
         "compile": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {}
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {}
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Grpc.Net.Client/2.55.0": {
@@ -65,10 +77,14 @@
           "Microsoft.Extensions.Logging.Abstractions": "3.0.3"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Client.dll": {}
+          "lib/net6.0/Grpc.Net.Client.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Client.dll": {}
+          "lib/net6.0/Grpc.Net.Client.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Grpc.Net.Common/2.55.0": {
@@ -77,10 +93,14 @@
           "Grpc.Core.Api": "2.55.0"
         },
         "compile": {
-          "lib/net6.0/Grpc.Net.Common.dll": {}
+          "lib/net6.0/Grpc.Net.Common.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Grpc.Net.Common.dll": {}
+          "lib/net6.0/Grpc.Net.Common.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Grpc.Tools/2.56.2": {
@@ -93,10 +113,14 @@
       "Microsoft.Extensions.Logging.Abstractions/3.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Memory/4.5.3": {
@@ -353,32 +377,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jacob\\.nuget\\packages\\": {}
+    "/Users/raabeenparameswaran/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj",
+      "projectUniqueName": "/Users/raabeenparameswaran/Documents/GitHub/Sep3ReEksame/Sep3CSharp/GrpcClient/GrpcClient.csproj",
       "projectName": "GrpcClient",
-      "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\GrpcClient.csproj",
-      "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\GrpcClient\\obj\\",
+      "projectPath": "/Users/raabeenparameswaran/Documents/GitHub/Sep3ReEksame/Sep3CSharp/GrpcClient/GrpcClient.csproj",
+      "packagesPath": "/Users/raabeenparameswaran/.nuget/packages/",
+      "outputPath": "/Users/raabeenparameswaran/Documents/GitHub/Sep3ReEksame/Sep3CSharp/GrpcClient/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/raabeenparameswaran/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\jacob\\Desktop\\Sep3ReEksame\\Sep3CSharp\\Domain\\Domain.csproj"
+            "/Users/raabeenparameswaran/Documents/GitHub/Sep3ReEksame/Sep3CSharp/Domain/Domain.csproj": {
+              "projectPath": "/Users/raabeenparameswaran/Documents/GitHub/Sep3ReEksame/Sep3CSharp/Domain/Domain.csproj"
             }
           }
         }
@@ -418,7 +443,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -427,7 +453,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }
