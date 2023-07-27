@@ -23,19 +23,16 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         ListPlayerMessage.Builder response = ListPlayerMessage.newBuilder();
 
         for (FootballPlayer player : dbCommands.getAllFootballPlayers(connection)) {
-            // Get player attributes
             Date dateOfBirth = player.getBirthday();
             String email = player.getEmail();
             String role = player.getRole();
             String teamName = player.getTeamName();
             String position = player.getPosition();
-            int id = player.getId();  // assuming ID is an int
+            int id = player.getId();
             String name = player.getName();
 
-            // Create builder for PlayerMessage
             PlayerMessage.Builder playerMessageBuilder = PlayerMessage.newBuilder();
 
-            // Check each attribute for null and set it if not null
             if (dateOfBirth != null) {
                 Timestamp timestampBirthDay = Timestamp.newBuilder()
                         .setSeconds(dateOfBirth.getTime() / 1000)
@@ -63,7 +60,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
                 playerMessageBuilder.setName(name);
             }
 
-            playerMessageBuilder.setId(id);  // assuming ID can't be null
+            playerMessageBuilder.setId(id);
 
             PlayerMessage playerMessage = playerMessageBuilder.build();
             response.addPlayers(playerMessage);
@@ -82,16 +79,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
         long seconds = request.getBirthday().getSeconds();
         Date sqlDate = new Date(seconds * 1000);
-        FootballPlayer player = new FootballPlayer
-                (request.getName(),
-                        sqlDate,
-                        request.getEmail(),
-                        request.getRolle(),
-                        request.getTeamName(),
-                        request.getPosition());
-        request.getTeamName();
-        request.getPosition();
-        System.out.println(player);
+        FootballPlayer player = new FootballPlayer(request.getName(), sqlDate, request.getEmail(), request.getRolle(), request.getTeamName(), request.getPosition());
 
         dbCommands.createFootballPlayer(connection, player);
 

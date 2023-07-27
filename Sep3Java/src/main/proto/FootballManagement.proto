@@ -62,10 +62,6 @@ message StringRequest {
 }
 
 
-message AllPlayersRequest{
-
-}
-
 message ListPlayerMessage {
   repeated PlayerMessage players = 1;
 }
