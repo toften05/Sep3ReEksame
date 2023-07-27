@@ -42,4 +42,14 @@ public class CoachGrpcHandler
         };
         return coachToReturn;
     }
+    
+    public static List<Coach> FromMessageToCoaches(ListCoachMessage ListP)
+    {
+        List<Coach> coachesToReturn = new List<Coach>();
+        foreach (CoachMessage coachMessage in ListP.Coaches)
+        {
+            coachesToReturn.Add(FromMessageToCoach(coachMessage));
+        }
+        return coachesToReturn;
+    }
 }

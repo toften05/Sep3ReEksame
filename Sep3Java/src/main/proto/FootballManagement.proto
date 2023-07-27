@@ -39,6 +39,10 @@ message AllPlayersRequest{
 
 }
 
+message AllCoachesRequest{
+
+}
+
 message CoachCreationDtoMessage {
   string name = 1;
   string birthday = 2;
@@ -66,6 +70,9 @@ message ListPlayerMessage {
   repeated PlayerMessage players = 1;
 }
 
+message ListCoachMessage {
+  repeated CoachMessage coaches = 1;
+}
 
 service TeamService{
   rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
@@ -81,5 +88,6 @@ service FootballPlayerService {
 
 service CoachService {
   rpc CreateCoach (CoachCreationDtoMessage) returns (CoachMessage);
+  rpc getAllCoaches(AllCoachesRequest) returns (ListCoachMessage);
   //rpc getByName (StringRequest) returns (CoachMessage);
 }

@@ -39,4 +39,22 @@ public CoachHttpClient(HttpClient httpClient)
         })!;
         return coach;
     }
+
+    public async Task<List<Coach>> GetAllCoachesAsync()
+    {
+        string uri = "/coach";
+        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        string result = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(result);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        List<Coach> coaches = JsonSerializer.Deserialize<List<Coach>>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return coaches;
+    }
     }

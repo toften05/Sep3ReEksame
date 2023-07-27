@@ -7,4 +7,5 @@ public interface ICoachGrpcClient
 {
     Task<Coach> CreateAsync(CoachCreationDto coachDto);
     //Task<Coach?> GetByCoachNameAsync(string coachName);
+    Task<List<Coach>> GetAsync();
 }

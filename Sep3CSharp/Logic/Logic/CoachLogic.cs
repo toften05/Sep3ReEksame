@@ -35,8 +35,12 @@ public class CoachLogic : ICoachLogic
 
         return result;
     }
-    
-    
+
+    public Task<List<Coach>> GetAsync()
+    {
+        return _coachGrpcClient.GetAsync();}
+
+
     private static void ValidateData(CoachCreationDto coachCreate)
     {
         string coachName = coachCreate.fullName;
