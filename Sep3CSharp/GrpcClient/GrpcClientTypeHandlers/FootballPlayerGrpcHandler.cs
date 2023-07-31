@@ -1,6 +1,7 @@
 using Domain;
 using Domain.DTOs;
 using Domain.Model;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using GrpcServices;
 
@@ -35,6 +36,11 @@ public class FootballPlayerGrpcHandler
         PlayerCreationDTOMessage playerToReturn = new PlayerCreationDTOMessage
         {
             Name = playerToCreate.Name,
+            Birthday = Timestamp.FromDateTime(playerToCreate.DateOfBirth.ToUniversalTime()),
+            Email = playerToCreate.Email,
+            Rolle = playerToCreate.Role,
+            TeamName = playerToCreate.TeamName,
+            Position = playerToCreate.Position
         };
         return playerToReturn;
     }
@@ -43,10 +49,16 @@ public class FootballPlayerGrpcHandler
     {
         Player playerToReturn = new Player
         {
-            Name = player.Name,
-            Id = player.Id
+            Name = player.Name ?? "",
+            Id = player.Id,
+            DateOfBirth = player.Birthday?.ToDateTime() ?? DateTime.MinValue,
+            Email = player.Email ?? "",
+            Role = player.Rolle ?? "",
+            TeamName = player.TeamName ?? "teamname",
+            Position = player.Position ?? ""
         };
         return playerToReturn;
     }
+    
 }
 

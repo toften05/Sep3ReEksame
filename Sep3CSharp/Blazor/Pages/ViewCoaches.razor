@@ -1,0 +1,69 @@
+﻿@page "/ViewCoaches"
+@using Domain.Model
+@using HttpClients.ClientInterfaces
+@inject ICoachService CoachService
+
+<h3 style="text-align: center">Overview of all coaches</h3>
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div>
+        <span>@msg</span>
+    </div>
+}
+
+@if (coaches == null)
+{
+    <span>Loading..</span>
+}
+else if (!coaches.Any())
+{
+    <span>No coaches found</span>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Fullname</th>
+            <th>Birthday</th>
+            <th>Initials</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Coach coach in coaches)
+        {
+            <tr>
+                <td>@coach.fullName</td>
+                <td>@coach.birthday</td>
+                <td>@coach.initials</td>
+                <td>@coach.email</td>
+                <td>@coach.role</td>
+                <td><button>edit coach</button></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Coach>? coaches;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            coaches = await CoachService.GetAllCoachesAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    
+    }
+}

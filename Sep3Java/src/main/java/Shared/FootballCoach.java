@@ -64,4 +64,16 @@ public class FootballCoach {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "FootballCoach{" +
+                "Id=" + Id +
+                ", fullName='" + fullName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", initials='" + initials + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
