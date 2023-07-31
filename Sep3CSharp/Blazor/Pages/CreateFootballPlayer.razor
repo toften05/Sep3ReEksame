@@ -27,13 +27,24 @@
             <label>Position:</label>
             <input type="text" @bind="position" @bind:event="oninput"/>
             <label>Team:</label>
-            <select @bind="team">
-                @foreach (Team team in teams) 
+           
+                @if (teams != null)
                 {
-                    <option>@team.ToString()</option> 
-                  
+                    <select @bind="@teamName">
+                        @foreach (var team in teams)
+                        {
+                            <option value="@team.teamName">@team.teamName</option>
+                        }
+                    </select>
                 }
-            </select>
+                else
+                {
+                    <p>Loading teams...</p>
+                }
+            @if (!string.IsNullOrEmpty(teamName))
+            {
+                <p>You selected: @teamName</p>
+            }
 
             @if (!string.IsNullOrEmpty(resultMsg))
             {
@@ -55,9 +66,24 @@
     private string teamName = "";
     private string resultMsg = "";
     private string color = "";
-    private Team team;
+    private IEnumerable<Team>? teams;
+    private string msg = "";
     
-
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            teams =  await TeamService.getALlTeamsAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    
+    }
+    
     private async Task Create()
     {
         resultMsg = "";
@@ -77,23 +103,8 @@
         }
     }
     
-    private IEnumerable<Team>? teams;
-    private string msg = "";
     
 
-    protected override async Task OnInitializedAsync()
-    {
-        msg = "";
-        try
-        {
-            teams = await TeamService.getALlTeamsAsync();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            msg = e.Message;
-        }
     
-    }
 
 }
