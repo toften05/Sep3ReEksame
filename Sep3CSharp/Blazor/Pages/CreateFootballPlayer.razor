@@ -1,7 +1,10 @@
 @page "/CreateSoccerPlayer"
 @using Domain.DTOs
+@using Domain.Model
+@using HttpClients
 @using HttpClients.ClientInterfaces
 @inject IFootballPlayerService FootballPlayerService
+@inject ITeamService TeamService;
 
 <div class="card">
     <h3>Create User</h3>
@@ -24,11 +27,12 @@
             <label>Position:</label>
             <input type="text" @bind="position" @bind:event="oninput"/>
             <label>Team:</label>
-            <select @bind="teamName">
-                <option value="Team Røv og Nøgler ">Team Røv og Nøgler</option>
-                <option value="Lokomotiv crazy legs">Lokomotiv crazy legs</option>
-                <option value="Røven af serie 6">Røven af serie 6</option>
-                <!-- add more options as needed -->
+            <select @bind="team">
+                @foreach (Team team in teams) 
+                {
+                    <option>@team.ToString()</option> 
+                  
+                }
             </select>
 
             @if (!string.IsNullOrEmpty(resultMsg))
@@ -51,6 +55,8 @@
     private string teamName = "";
     private string resultMsg = "";
     private string color = "";
+    private Team team;
+    
 
     private async Task Create()
     {
@@ -69,6 +75,25 @@
             resultMsg = e.Message;
             color = "red";
         }
+    }
+    
+    private IEnumerable<Team>? teams;
+    private string msg = "";
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            teams = await TeamService.getALlTeamsAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    
     }
 
 }

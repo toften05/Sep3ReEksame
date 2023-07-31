@@ -9,5 +9,9 @@ public class Team
     public List<Player>? PlayersOnTeam { get; set; }
     //public List<Coach>? CoachesOnTeam { get; set; }
 
+    public override string ToString()
+    {
+        return teamName;
+    }
     
 }

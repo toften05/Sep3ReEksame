@@ -46,37 +46,6 @@ public final class FootballPlayerServiceGrpc {
     return getCreatePlayerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Domain.StringRequest,
-      Domain.PlayerMessage> getGetByUsernameMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getByUsername",
-      requestType = Domain.StringRequest.class,
-      responseType = Domain.PlayerMessage.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Domain.StringRequest,
-      Domain.PlayerMessage> getGetByUsernameMethod() {
-    io.grpc.MethodDescriptor<Domain.StringRequest, Domain.PlayerMessage> getGetByUsernameMethod;
-    if ((getGetByUsernameMethod = FootballPlayerServiceGrpc.getGetByUsernameMethod) == null) {
-      synchronized (FootballPlayerServiceGrpc.class) {
-        if ((getGetByUsernameMethod = FootballPlayerServiceGrpc.getGetByUsernameMethod) == null) {
-          FootballPlayerServiceGrpc.getGetByUsernameMethod = getGetByUsernameMethod =
-              io.grpc.MethodDescriptor.<Domain.StringRequest, Domain.PlayerMessage>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getByUsername"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Domain.StringRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Domain.PlayerMessage.getDefaultInstance()))
-              .setSchemaDescriptor(new FootballPlayerServiceMethodDescriptorSupplier("getByUsername"))
-              .build();
-        }
-      }
-    }
-    return getGetByUsernameMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<Domain.AllPlayersRequest,
       Domain.ListPlayerMessage> getGetAllPlayersMethod;
 
@@ -106,6 +75,37 @@ public final class FootballPlayerServiceGrpc {
       }
     }
     return getGetAllPlayersMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<Domain.StringRequest,
+      Domain.PlayerMessage> getGetByUsernameMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getByUsername",
+      requestType = Domain.StringRequest.class,
+      responseType = Domain.PlayerMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Domain.StringRequest,
+      Domain.PlayerMessage> getGetByUsernameMethod() {
+    io.grpc.MethodDescriptor<Domain.StringRequest, Domain.PlayerMessage> getGetByUsernameMethod;
+    if ((getGetByUsernameMethod = FootballPlayerServiceGrpc.getGetByUsernameMethod) == null) {
+      synchronized (FootballPlayerServiceGrpc.class) {
+        if ((getGetByUsernameMethod = FootballPlayerServiceGrpc.getGetByUsernameMethod) == null) {
+          FootballPlayerServiceGrpc.getGetByUsernameMethod = getGetByUsernameMethod =
+              io.grpc.MethodDescriptor.<Domain.StringRequest, Domain.PlayerMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getByUsername"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.StringRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.PlayerMessage.getDefaultInstance()))
+              .setSchemaDescriptor(new FootballPlayerServiceMethodDescriptorSupplier("getByUsername"))
+              .build();
+        }
+      }
+    }
+    return getGetByUsernameMethod;
   }
 
   /**
@@ -165,16 +165,16 @@ public final class FootballPlayerServiceGrpc {
 
     /**
      */
-    public void getByUsername(Domain.StringRequest request,
-        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetByUsernameMethod(), responseObserver);
+    public void getAllPlayers(Domain.AllPlayersRequest request,
+        io.grpc.stub.StreamObserver<Domain.ListPlayerMessage> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllPlayersMethod(), responseObserver);
     }
 
     /**
      */
-    public void getAllPlayers(Domain.AllPlayersRequest request,
-        io.grpc.stub.StreamObserver<Domain.ListPlayerMessage> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllPlayersMethod(), responseObserver);
+    public void getByUsername(Domain.StringRequest request,
+        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetByUsernameMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -187,19 +187,19 @@ public final class FootballPlayerServiceGrpc {
                 Domain.PlayerMessage>(
                   this, METHODID_CREATE_PLAYER)))
           .addMethod(
-            getGetByUsernameMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                Domain.StringRequest,
-                Domain.PlayerMessage>(
-                  this, METHODID_GET_BY_USERNAME)))
-          .addMethod(
             getGetAllPlayersMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 Domain.AllPlayersRequest,
                 Domain.ListPlayerMessage>(
                   this, METHODID_GET_ALL_PLAYERS)))
+          .addMethod(
+            getGetByUsernameMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                Domain.StringRequest,
+                Domain.PlayerMessage>(
+                  this, METHODID_GET_BY_USERNAME)))
           .build();
     }
   }
@@ -228,18 +228,18 @@ public final class FootballPlayerServiceGrpc {
 
     /**
      */
-    public void getByUsername(Domain.StringRequest request,
-        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
     public void getAllPlayers(Domain.AllPlayersRequest request,
         io.grpc.stub.StreamObserver<Domain.ListPlayerMessage> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetAllPlayersMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getByUsername(Domain.StringRequest request,
+        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -266,16 +266,16 @@ public final class FootballPlayerServiceGrpc {
 
     /**
      */
-    public Domain.PlayerMessage getByUsername(Domain.StringRequest request) {
+    public Domain.ListPlayerMessage getAllPlayers(Domain.AllPlayersRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetByUsernameMethod(), getCallOptions(), request);
+          getChannel(), getGetAllPlayersMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Domain.ListPlayerMessage getAllPlayers(Domain.AllPlayersRequest request) {
+    public Domain.PlayerMessage getByUsername(Domain.StringRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetAllPlayersMethod(), getCallOptions(), request);
+          getChannel(), getGetByUsernameMethod(), getCallOptions(), request);
     }
   }
 
@@ -303,24 +303,24 @@ public final class FootballPlayerServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Domain.PlayerMessage> getByUsername(
-        Domain.StringRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<Domain.ListPlayerMessage> getAllPlayers(
         Domain.AllPlayersRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetAllPlayersMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Domain.PlayerMessage> getByUsername(
+        Domain.StringRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_PLAYER = 0;
-  private static final int METHODID_GET_BY_USERNAME = 1;
-  private static final int METHODID_GET_ALL_PLAYERS = 2;
+  private static final int METHODID_GET_ALL_PLAYERS = 1;
+  private static final int METHODID_GET_BY_USERNAME = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -343,13 +343,13 @@ public final class FootballPlayerServiceGrpc {
           serviceImpl.createPlayer((Domain.PlayerCreationDTOMessage) request,
               (io.grpc.stub.StreamObserver<Domain.PlayerMessage>) responseObserver);
           break;
-        case METHODID_GET_BY_USERNAME:
-          serviceImpl.getByUsername((Domain.StringRequest) request,
-              (io.grpc.stub.StreamObserver<Domain.PlayerMessage>) responseObserver);
-          break;
         case METHODID_GET_ALL_PLAYERS:
           serviceImpl.getAllPlayers((Domain.AllPlayersRequest) request,
               (io.grpc.stub.StreamObserver<Domain.ListPlayerMessage>) responseObserver);
+          break;
+        case METHODID_GET_BY_USERNAME:
+          serviceImpl.getByUsername((Domain.StringRequest) request,
+              (io.grpc.stub.StreamObserver<Domain.PlayerMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -413,8 +413,8 @@ public final class FootballPlayerServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new FootballPlayerServiceFileDescriptorSupplier())
               .addMethod(getCreatePlayerMethod())
-              .addMethod(getGetByUsernameMethod())
               .addMethod(getGetAllPlayersMethod())
+              .addMethod(getGetByUsernameMethod())
               .build();
         }
       }

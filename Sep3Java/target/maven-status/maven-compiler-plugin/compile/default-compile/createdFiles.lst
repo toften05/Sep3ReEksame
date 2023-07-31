@@ -1,5 +1,6 @@
 Domain\TeamServiceGrpc$3.class
 Domain\CoachServiceGrpc$3.class
+Domain\AllCoachesRequestOrBuilder.class
 Domain\PlayerMessage$Builder.class
 TeamServiceImpl.class
 Domain\ListTeamMessageOrBuilder.class
@@ -12,6 +13,7 @@ Domain\PlayerMessageOrBuilder.class
 Domain\TeamCreationDTOMessageOrBuilder.class
 Domain\CoachMessage$Builder.class
 Domain\TeamCreationDTOMessage$Builder.class
+Domain\AllCoachesRequest$1.class
 Domain\TeamCreationDTOMessage.class
 Shared\FootballCoach.class
 Domain\FootballPlayerServiceGrpc$3.class
@@ -19,6 +21,7 @@ Domain\ListPlayerMessage$Builder.class
 Domain\TeamServiceGrpc$TeamServiceFutureStub.class
 Domain\TeamMessage.class
 Domain\FootballPlayerServiceGrpc$FootballPlayerServiceStub.class
+Domain\ListCoachMessage$Builder.class
 Domain\CoachCreationDtoMessage$1.class
 Domain\StringRequest$1.class
 database\FootballPlayerCommands\CoachDbCommands.class
@@ -39,6 +42,7 @@ Shared\Team.class
 StartServer.class
 Domain\AllTeamsRequest$1.class
 Domain\FootballPlayerServiceGrpc$FootballPlayerServiceMethodDescriptorSupplier.class
+Domain\ListCoachMessage$1.class
 Domain\CoachServiceGrpc$1.class
 Domain\CoachServiceGrpc$CoachServiceStub.class
 Domain\CoachServiceGrpc$MethodHandlers.class
@@ -47,8 +51,11 @@ database\DatabaseConnection\DatabaseConnection.class
 Domain\ListPlayerMessage$1.class
 Domain\PlayerCreationDTOMessage.class
 Shared\FootballPlayer.class
+Domain\ListCoachMessage.class
 FootballCoachImpl.class
 database\FootballPlayerCommands\CoachDbCommandsInterface.class
+Domain\ListCoachMessageOrBuilder.class
+Domain\AllCoachesRequest.class
 Domain\TeamServiceGrpc$MethodHandlers.class
 Domain\CoachServiceGrpc$CoachServiceBaseDescriptorSupplier.class
 Domain\AllPlayersRequestOrBuilder.class
@@ -65,6 +72,7 @@ Domain\AllTeamsRequestOrBuilder.class
 Domain\CoachServiceGrpc$2.class
 Domain\CoachMessageOrBuilder.class
 database\FootballPlayerCommands\FootballPlayerDbCommands.class
+Domain\AllCoachesRequest$Builder.class
 Domain\FootballManagement.class
 Domain\TeamServiceGrpc.class
 Domain\StringRequestOrBuilder.class

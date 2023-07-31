@@ -52,7 +52,7 @@ public class TeamDbCommands {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("Football Team returned");
         return teams;
     }
 }

@@ -42,6 +42,7 @@ message PlayerMessage {
 }
 
 message AllPlayersRequest{
+
 }
 
 message AllCoachesRequest{
@@ -54,6 +55,7 @@ message CoachCreationDtoMessage {
   string initials = 3;
   string email = 4;
   string role = 5;
+
 }
 
 message CoachMessage {

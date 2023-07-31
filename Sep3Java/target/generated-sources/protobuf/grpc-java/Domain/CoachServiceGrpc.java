@@ -46,6 +46,37 @@ public final class CoachServiceGrpc {
     return getCreateCoachMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<Domain.AllCoachesRequest,
+      Domain.ListCoachMessage> getGetAllCoachesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getAllCoaches",
+      requestType = Domain.AllCoachesRequest.class,
+      responseType = Domain.ListCoachMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Domain.AllCoachesRequest,
+      Domain.ListCoachMessage> getGetAllCoachesMethod() {
+    io.grpc.MethodDescriptor<Domain.AllCoachesRequest, Domain.ListCoachMessage> getGetAllCoachesMethod;
+    if ((getGetAllCoachesMethod = CoachServiceGrpc.getGetAllCoachesMethod) == null) {
+      synchronized (CoachServiceGrpc.class) {
+        if ((getGetAllCoachesMethod = CoachServiceGrpc.getGetAllCoachesMethod) == null) {
+          CoachServiceGrpc.getGetAllCoachesMethod = getGetAllCoachesMethod =
+              io.grpc.MethodDescriptor.<Domain.AllCoachesRequest, Domain.ListCoachMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getAllCoaches"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.AllCoachesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.ListCoachMessage.getDefaultInstance()))
+              .setSchemaDescriptor(new CoachServiceMethodDescriptorSupplier("getAllCoaches"))
+              .build();
+        }
+      }
+    }
+    return getGetAllCoachesMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -95,13 +126,20 @@ public final class CoachServiceGrpc {
   public static abstract class CoachServiceImplBase implements io.grpc.BindableService {
 
     /**
-     * <pre>
-     *rpc getByName (StringRequest) returns (CoachMessage);
-     * </pre>
      */
     public void createCoach(Domain.CoachCreationDtoMessage request,
         io.grpc.stub.StreamObserver<Domain.CoachMessage> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateCoachMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *rpc getByName (StringRequest) returns (CoachMessage);
+     * </pre>
+     */
+    public void getAllCoaches(Domain.AllCoachesRequest request,
+        io.grpc.stub.StreamObserver<Domain.ListCoachMessage> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAllCoachesMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -113,6 +151,13 @@ public final class CoachServiceGrpc {
                 Domain.CoachCreationDtoMessage,
                 Domain.CoachMessage>(
                   this, METHODID_CREATE_COACH)))
+          .addMethod(
+            getGetAllCoachesMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                Domain.AllCoachesRequest,
+                Domain.ListCoachMessage>(
+                  this, METHODID_GET_ALL_COACHES)))
           .build();
     }
   }
@@ -132,14 +177,22 @@ public final class CoachServiceGrpc {
     }
 
     /**
-     * <pre>
-     *rpc getByName (StringRequest) returns (CoachMessage);
-     * </pre>
      */
     public void createCoach(Domain.CoachCreationDtoMessage request,
         io.grpc.stub.StreamObserver<Domain.CoachMessage> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateCoachMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *rpc getByName (StringRequest) returns (CoachMessage);
+     * </pre>
+     */
+    public void getAllCoaches(Domain.AllCoachesRequest request,
+        io.grpc.stub.StreamObserver<Domain.ListCoachMessage> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetAllCoachesMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -158,13 +211,20 @@ public final class CoachServiceGrpc {
     }
 
     /**
-     * <pre>
-     *rpc getByName (StringRequest) returns (CoachMessage);
-     * </pre>
      */
     public Domain.CoachMessage createCoach(Domain.CoachCreationDtoMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateCoachMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *rpc getByName (StringRequest) returns (CoachMessage);
+     * </pre>
+     */
+    public Domain.ListCoachMessage getAllCoaches(Domain.AllCoachesRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetAllCoachesMethod(), getCallOptions(), request);
     }
   }
 
@@ -183,18 +243,27 @@ public final class CoachServiceGrpc {
     }
 
     /**
-     * <pre>
-     *rpc getByName (StringRequest) returns (CoachMessage);
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<Domain.CoachMessage> createCoach(
         Domain.CoachCreationDtoMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateCoachMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *rpc getByName (StringRequest) returns (CoachMessage);
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Domain.ListCoachMessage> getAllCoaches(
+        Domain.AllCoachesRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetAllCoachesMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_COACH = 0;
+  private static final int METHODID_GET_ALL_COACHES = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -216,6 +285,10 @@ public final class CoachServiceGrpc {
         case METHODID_CREATE_COACH:
           serviceImpl.createCoach((Domain.CoachCreationDtoMessage) request,
               (io.grpc.stub.StreamObserver<Domain.CoachMessage>) responseObserver);
+          break;
+        case METHODID_GET_ALL_COACHES:
+          serviceImpl.getAllCoaches((Domain.AllCoachesRequest) request,
+              (io.grpc.stub.StreamObserver<Domain.ListCoachMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -279,6 +352,7 @@ public final class CoachServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new CoachServiceFileDescriptorSupplier())
               .addMethod(getCreateCoachMethod())
+              .addMethod(getGetAllCoachesMethod())
               .build();
         }
       }
