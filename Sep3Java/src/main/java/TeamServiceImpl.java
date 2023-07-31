@@ -1,6 +1,4 @@
-import Domain.TeamCreationDTOMessage;
-import Domain.TeamMessage;
-import Domain.TeamServiceGrpc;
+import Domain.*;
 import Shared.Team;
 import database.DatabaseConnection.DatabaseConnection;
 import database.FootballPlayerCommands.FootballPlayerDbCommands;
@@ -30,6 +28,53 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
                 .build();
 
         responseObserver.onNext(response);
+        responseObserver.onCompleted();
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+@Override
+    public void getAllTeams(AllTeamsRequest request, StreamObserver<ListTeamMessage> responseObserver) {
+        System.out.println("getAllTeams called");
+        DatabaseConnection db = new DatabaseConnection();
+        Connection connection = db.getConnection();
+        TeamDbCommands dbCommands = new TeamDbCommands();
+
+        ListTeamMessage.Builder response = ListTeamMessage.newBuilder();
+
+        for (Team teams : dbCommands.getAllTeams(connection)) {
+            String teamName = teams.getTeamName();
+            String initials = teams.getInitials();
+            String division = teams.getDivision();
+
+
+
+            TeamMessage.Builder teamMessageBuilder = TeamMessage.newBuilder();
+
+            if (teamName != null) {
+                teamMessageBuilder.setTeamName(teamName);
+            }
+
+            if (initials != null) {
+                teamMessageBuilder.setInitials(initials);
+            }
+
+            if (division != null) {
+                teamMessageBuilder.setDivision(division);
+            }
+
+
+            TeamMessage teamMessage = teamMessageBuilder.build();
+            response.addTeams(teamMessage);
+
+        }
+
+
+        responseObserver.onNext(response.build());
         responseObserver.onCompleted();
 
         try {

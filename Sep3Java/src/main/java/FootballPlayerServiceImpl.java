@@ -8,6 +8,7 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.FootballPlayerServiceImplBase {

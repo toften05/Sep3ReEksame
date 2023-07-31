@@ -15,7 +15,7 @@ public class TeamGrpcHandler
         
     }
     
-    public static TeamCreationDTOMessage FromTeamCreationDtoToMessage(TeamDtos teamToCreate)
+    public static TeamCreationDTOMessage FromTeamCreationDtoToMessage(TeamCreationDTO teamToCreate)
     {
         
         TeamCreationDTOMessage teamToReturn = new TeamCreationDTOMessage()
@@ -39,6 +39,17 @@ public class TeamGrpcHandler
         };
         return teamToReturn;
     }
-    
-    
+
+    public static List<Team> FromMessageToTeams(ListTeamMessage listT)
+    {
+        List<Team> teamsToReturn = new List<Team>();
+        foreach (TeamMessage teamMessage in listT.Teams)
+        {
+            teamsToReturn.Add(FromMessageToTeam(teamMessage));
+        }
+
+        return teamsToReturn;
+    }
+
+
 }

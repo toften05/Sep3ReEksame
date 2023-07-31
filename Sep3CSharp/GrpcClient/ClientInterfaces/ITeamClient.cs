@@ -5,5 +5,7 @@ namespace GrpcClient.ClientInterfaces;
 
 public interface ITeamClient
 {
-    Task<Team> Create(TeamDtos dto);
+    Task<Team> Create(TeamCreationDTO creationDto);
+
+    Task<List<Team>> getAsync();
 }

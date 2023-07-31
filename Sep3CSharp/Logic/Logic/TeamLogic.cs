@@ -14,10 +14,15 @@ public class TeamLogic : ITeamLogic
         _teamClient = teamClient;
     }
 
-    public async Task<Team> createAsync(TeamDtos dto)
+    public async Task<Team> createAsync(TeamCreationDTO creationDto)
     {
-        Team result = await _teamClient.Create(dto);
+        Team result = await _teamClient.Create(creationDto);
 
         return result;
+    }
+
+    public Task<List<Team>> getAsync()
+    {
+        return _teamClient.getAsync();
     }
 }

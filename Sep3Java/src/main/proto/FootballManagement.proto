@@ -16,6 +16,12 @@ message  TeamMessage{
   string division = 2;
   string initials = 3;
 }
+
+message AllTeamsRequest{
+}
+message ListTeamMessage {
+  repeated TeamMessage teams = 1;
+}
 message PlayerCreationDTOMessage {
   string name = 1;
   google.protobuf.Timestamp birthday = 2;
@@ -76,6 +82,7 @@ message ListCoachMessage {
 
 service TeamService{
   rpc CreateTeam(TeamCreationDTOMessage) returns (TeamMessage);
+  rpc getAllTeams(AllTeamsRequest) returns (ListTeamMessage);
 
 }
 

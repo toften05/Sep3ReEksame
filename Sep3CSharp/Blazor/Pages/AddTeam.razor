@@ -52,7 +52,7 @@
     {
         try
         {
-            await TeamService.CreateAsync(new TeamDtos(teamName, division, initials));
+            await TeamService.CreateAsync(new TeamCreationDTO(teamName, division, initials));
             teamName = "";
             division = "";
             initials = "";

@@ -14,7 +14,9 @@ import java.util.List;
 public class CoachDbCommands {
 
     public void createFootballCoach(Connection connection, FootballCoach coach){
-        String sql = "INSERT INTO SoccerCoach(name, dateOfBirth, email, role , initials) VALUES(?,?,?,?,?);";
+
+        String sql = "INSERT INTO FootBallCoach(fullname, dateofbirth, email, role, initials) VALUES(?,?,?,?,?);";
+
 
         PreparedStatement preparedStatement;
 

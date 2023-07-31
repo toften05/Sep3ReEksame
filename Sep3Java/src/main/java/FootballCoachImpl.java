@@ -86,5 +86,11 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
         responseObserver.onNext(response.build());
         responseObserver.onCompleted();
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

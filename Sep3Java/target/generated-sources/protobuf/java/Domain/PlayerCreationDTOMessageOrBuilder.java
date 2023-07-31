@@ -18,4 +18,67 @@ public interface PlayerCreationDTOMessageOrBuilder extends
    */
   com.google.protobuf.ByteString
       getNameBytes();
+
+  /**
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
+   * @return Whether the birthday field is set.
+   */
+  boolean hasBirthday();
+  /**
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
+   * @return The birthday.
+   */
+  com.google.protobuf.Timestamp getBirthday();
+  /**
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder();
+
+  /**
+   * <code>string email = 3;</code>
+   * @return The email.
+   */
+  java.lang.String getEmail();
+  /**
+   * <code>string email = 3;</code>
+   * @return The bytes for email.
+   */
+  com.google.protobuf.ByteString
+      getEmailBytes();
+
+  /**
+   * <code>string rolle = 4;</code>
+   * @return The rolle.
+   */
+  java.lang.String getRolle();
+  /**
+   * <code>string rolle = 4;</code>
+   * @return The bytes for rolle.
+   */
+  com.google.protobuf.ByteString
+      getRolleBytes();
+
+  /**
+   * <code>string teamName = 5;</code>
+   * @return The teamName.
+   */
+  java.lang.String getTeamName();
+  /**
+   * <code>string teamName = 5;</code>
+   * @return The bytes for teamName.
+   */
+  com.google.protobuf.ByteString
+      getTeamNameBytes();
+
+  /**
+   * <code>string position = 6;</code>
+   * @return The position.
+   */
+  java.lang.String getPosition();
+  /**
+   * <code>string position = 6;</code>
+   * @return The bytes for position.
+   */
+  com.google.protobuf.ByteString
+      getPositionBytes();
 }
