@@ -12,7 +12,7 @@ import java.util.List;
 public class FootballPlayerDbCommands {
 
     public List<FootballPlayer> getAllFootballPlayers(Connection connection) {
-        String sql = "SELECT * FROM SoccerPlayer;";
+        String sql = "SELECT * FROM soccerplayer;";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         List<FootballPlayer> footballPlayers = new ArrayList<>();
@@ -22,6 +22,7 @@ public class FootballPlayerDbCommands {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                int id = resultSet.getInt("playerid");
                 String name = resultSet.getString("name");
                 Date birthday = resultSet.getDate("birthday");
                 String email = resultSet.getString("email");
@@ -30,6 +31,7 @@ public class FootballPlayerDbCommands {
                 String position = resultSet.getString("position");
 
                 FootballPlayer footballPlayer = new FootballPlayer(name, birthday, email, role, teamName, position);
+                footballPlayer.setId(id);
                 footballPlayers.add(footballPlayer);
             }
         } catch (SQLException e) {
@@ -73,7 +75,7 @@ public class FootballPlayerDbCommands {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Integer id = resultSet.getInt("playerid");
+                int id = resultSet.getInt("playerid");
                 String name = resultSet.getString("name");
                 Date birthday = resultSet.getDate("birthday");
                 String email = resultSet.getString("email");
@@ -82,7 +84,8 @@ public class FootballPlayerDbCommands {
                 String position = resultSet.getString("position");
 
 
-                footballPlayer = new FootballPlayer( name, birthday, email, role, teamName, position);
+                footballPlayer = new FootballPlayer(name, birthday, email, role, teamName, position);
+                footballPlayer.setId(id);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -91,7 +94,7 @@ public class FootballPlayerDbCommands {
     }
 
     public void deleteFootballPlayer(Connection connection, int playerId) {
-        String sql = "DELETE FROM SoccerPlayer WHERE id = ?;";
+        String sql = "DELETE FROM SoccerPlayer WHERE playerid = ?;";
         PreparedStatement preparedStatement;
 
         try {
