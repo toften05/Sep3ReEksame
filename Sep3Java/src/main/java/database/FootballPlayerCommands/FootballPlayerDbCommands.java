@@ -5,14 +5,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+  import java.text.SimpleDateFormat;
+  import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class FootballPlayerDbCommands {
 
     public List<FootballPlayer> getAllFootballPlayers(Connection connection) {
-        String sql = "SELECT * FROM soccerplayer;";
+        String sql = "SELECT * FROM FootballPlayer;";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         List<FootballPlayer> footballPlayers = new ArrayList<>();
@@ -23,12 +24,12 @@ public class FootballPlayerDbCommands {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("playerid");
-                String name = resultSet.getString("name");
+                String teamName = resultSet.getString("teamname");
+                String name = resultSet.getString("fullname");
                 Date birthday = resultSet.getDate("birthday");
+                String position = resultSet.getString("position");
                 String email = resultSet.getString("email");
                 String role = resultSet.getString("role");
-                String teamName = resultSet.getString("teamname");
-                String position = resultSet.getString("position");
 
                 FootballPlayer footballPlayer = new FootballPlayer(name, birthday, email, role, teamName, position);
                 footballPlayer.setId(id);
@@ -43,17 +44,17 @@ public class FootballPlayerDbCommands {
     }
 
     public void createFootballPlayer(Connection connection, FootballPlayer player) {
-        String sql = "INSERT INTO soccerplayer(name, birthday, email, role, teamname, position ) VALUES(?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO FootballPlayer(teamname, fullname, birthday, position, email, role) VALUES(?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, player.getName());
-            preparedStatement.setDate(2, new java.sql.Date(player.getBirthday().getTime()));
-            preparedStatement.setString(3, player.getEmail());
-            preparedStatement.setString(4, player.getRole());
-            preparedStatement.setString(5, player.getTeamName());
-            preparedStatement.setString(6, player.getPosition());
+            preparedStatement.setString(1, player.getTeamName());
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.setDate(3, new java.sql.Date(player.getBirthday().getTime()));
+            preparedStatement.setString(4, player.getPosition());
+            preparedStatement.setString(5, player.getEmail());
+            preparedStatement.setString(6, player.getRole());
 
             preparedStatement.executeUpdate();
             System.out.println("Football player created");
@@ -64,7 +65,7 @@ public class FootballPlayerDbCommands {
 
 
     public FootballPlayer getPlayerByUsername(Connection connection, String username) {
-        String sql = "SELECT * FROM SoccerPlayer WHERE name = ?;";
+        String sql = "SELECT * FROM FootballPlayer WHERE fullname = ?;";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         FootballPlayer footballPlayer = null;
@@ -76,12 +77,12 @@ public class FootballPlayerDbCommands {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("playerid");
-                String name = resultSet.getString("name");
+                String teamName = resultSet.getString("teamname");
+                String name = resultSet.getString("fullname");
                 Date birthday = resultSet.getDate("birthday");
+                String position = resultSet.getString("position");
                 String email = resultSet.getString("email");
                 String role = resultSet.getString("role");
-                String teamName = resultSet.getString("teamname");
-                String position = resultSet.getString("position");
 
 
                 footballPlayer = new FootballPlayer(name, birthday, email, role, teamName, position);
@@ -94,7 +95,7 @@ public class FootballPlayerDbCommands {
     }
 
     public void deleteFootballPlayer(Connection connection, int playerId) {
-        String sql = "DELETE FROM SoccerPlayer WHERE playerid = ?;";
+        String sql = "DELETE FROM FootballPlayer WHERE playerid = ?;";
         PreparedStatement preparedStatement;
 
         try {
