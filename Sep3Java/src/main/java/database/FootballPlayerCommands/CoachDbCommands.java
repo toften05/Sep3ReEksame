@@ -15,7 +15,7 @@ public class CoachDbCommands {
 
     public void createFootballCoach(Connection connection, FootballCoach coach){
 
-        String sql = "INSERT INTO FootBallCoach(fullname, dateofbirth, email, role, initials) VALUES(?,?,?,?,?);";
+        String sql = "INSERT INTO footballcoach(fullname, dateofbirth, email, role, teamname, initials) VALUES(?,?,?,?,?,?);";
 
 
         PreparedStatement preparedStatement;
@@ -23,10 +23,11 @@ public class CoachDbCommands {
        try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, coach.getFullName());
-            preparedStatement.setString(2, coach.getBirthday());
+            preparedStatement.setDate(2, new java.sql.Date(coach.getBirthday().getTime()));
            preparedStatement.setString(3, coach.getEmail());
            preparedStatement.setString(4, coach.getRole());
-           preparedStatement.setString(5, coach.getInitials());
+           preparedStatement.setString(5, coach.getTeamName());
+           preparedStatement.setString(6, coach.getInitials());
            preparedStatement.executeUpdate();
 
             System.out.println("Football coach created");
@@ -37,7 +38,7 @@ public class CoachDbCommands {
     }
 
     public List<FootballCoach> getAllCoaches(Connection connection) {
-        String sql = "SELECT * FROM SoccerCoach;";
+        String sql = "SELECT * FROM footballcoach;";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         List<FootballCoach> footballCoaches = new ArrayList<>();
@@ -47,13 +48,15 @@ public class CoachDbCommands {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String birthday = resultSet.getString("dateOfBirth"); // birthday eller dateOfBirth??
+                String name = resultSet.getString("fullname");
+                Date birthday = resultSet.getDate("dateofbirth"); // birthday eller dateOfBirth??
                 String initials = resultSet.getString("initials");
                 String email = resultSet.getString("email");
                 String role = resultSet.getString("role");
+                String teamName = resultSet.getString("teamname");
 
-                FootballCoach footballCoach = new FootballCoach(name, birthday, initials, email, role);
+
+                FootballCoach footballCoach = new FootballCoach(name, birthday, initials, email, role, teamName );
                 footballCoaches.add(footballCoach);
             }
         } catch (SQLException e) {

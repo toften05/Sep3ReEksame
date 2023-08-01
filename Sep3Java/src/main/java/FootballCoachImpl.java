@@ -16,7 +16,11 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         CoachDbCommands dbCommands = new CoachDbCommands();
-        FootballCoach coach = new FootballCoach(request.getName(), request.getBirthday(),request.getInitials(), request.getEmail(), request.getRole());
+
+        long seconds = request.getBirthday().getSeconds();
+        Date date = new Date(seconds * 1000);
+        FootballCoach coach = new FootballCoach(request.getName(),date ,request.getInitials(), request.getEmail(), request.getRole(),
+            request.getTeamName());
 
         dbCommands.createFootballCoach(connection, coach);
 
@@ -26,6 +30,7 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
                 .setInitials(coach.getInitials())
                 .setEmail(coach.getEmail())
                 .setRole(coach.getRole())
+                .setTeamName(coach.getTeamName())
                 .build();
 
         responseObserver.onNext(response);
@@ -48,10 +53,11 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
         for (FootballCoach coach : dbCommands.getAllCoaches(connection)) {
             String name = coach.getFullName();
-            String birthday = coach.getBirthday();
+            Date birthday = coach.getBirthday();
             String initials = coach.getInitials();
             String email = coach.getEmail();
             String role = coach.getRole();
+            String teamName = coach.getTeamName();
 
             CoachMessage.Builder coachMessageBuilder = CoachMessage.newBuilder();
 
@@ -60,7 +66,10 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
             }
 
             if (birthday != null) {
-                coachMessageBuilder.setBirthday(birthday);
+                Timestamp timestampBirthDay = Timestamp.newBuilder()
+                    .setSeconds(birthday.getTime() / 1000)
+                    .build();
+                coachMessageBuilder.setBirthday(timestampBirthDay);
             }
 
             if (initials != null) {
@@ -74,6 +83,10 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
             if (role != null) {
                 coachMessageBuilder.setRole(role);
+            }
+
+            if (teamName != null) {
+                coachMessageBuilder.setTeamName(teamName);
             }
 
 
