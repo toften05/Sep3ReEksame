@@ -16,6 +16,7 @@ public class TeamLogic : ITeamLogic
 
     public async Task<Team> createAsync(TeamCreationDTO creationDto)
     {
+        validateData(creationDto);
         Team result = await _teamClient.Create(creationDto);
 
         return result;
@@ -24,5 +25,27 @@ public class TeamLogic : ITeamLogic
     public Task<List<Team>> getAsync()
     {
         return _teamClient.getAsync();
+    }
+
+    private static void validateData(TeamCreationDTO teamCreationDto)
+    {
+        string teamName = teamCreationDto.teamName;
+        string division = teamCreationDto.division;
+        string initials = teamCreationDto.initials;
+
+        if (initials.Length > 3)
+        {
+            throw new Exception("Initials must be 3 characters or below");
+        }
+
+        if (teamName.Length > 30)
+        {
+            throw new Exception("Teamname must be below 30 chracters");
+        }
+
+        if (division.Length > 30)
+        {
+            throw new Exception("division must be below 30 characters");
+        }
     }
 }
