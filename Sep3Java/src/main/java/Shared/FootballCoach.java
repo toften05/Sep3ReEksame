@@ -1,20 +1,24 @@
 package Shared;
 
+import java.util.Date;
+
 public class FootballCoach {
     public int Id ;
     public String fullName ;
-    public String birthday ;
+    public java.util.Date birthday ;
     public String initials ;
     public String email ;
     public String role;
+    public String teamName;
 
 
-    public FootballCoach(String fullName, String birthday, String initials, String email, String role) {
+    public FootballCoach(String fullName, Date birthday, String initials, String email, String role, String teamName) {
         this.fullName = fullName;
         this.birthday = birthday;
         this.initials = initials;
         this.email = email;
         this.role = role;
+        this.teamName = teamName;
     }
 
     public int getId() {
@@ -33,11 +37,11 @@ public class FootballCoach {
         this.fullName = fullName;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -63,6 +67,16 @@ public class FootballCoach {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getTeamName()
+    {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName)
+    {
+        this.teamName = teamName;
     }
 
     @Override
