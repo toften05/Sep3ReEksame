@@ -13,7 +13,6 @@
         private String Position;
 
         public FootballPlayer(String name, Date birthday , String email, String role, String teamName, String position) {
-
             this.name = name;
             this.birthday = birthday;
             this.email = email;
@@ -79,11 +78,16 @@
         }
 
 
+        @Override
         public String toString() {
-            return "footballplayer{" +
+            return "FootballPlayer{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
                     ", birthday=" + birthday +
+                    ", email='" + email + '\'' +
+                    ", Role='" + Role + '\'' +
+                    ", TeamName='" + TeamName + '\'' +
+                    ", Position='" + Position + '\'' +
                     '}';
         }
     }
