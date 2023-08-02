@@ -156,6 +156,39 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void editPlayer(PlayerMessage request, StreamObserver<PlayerMessage> responseObserver) {
+        DatabaseConnection db = new DatabaseConnection();
+        Connection connection = db.getConnection();
+        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+
+        long seconds = request.getBirthday().getSeconds();
+        Date sqlDate = new Date(seconds * 1000);
+        FootballPlayer player = new FootballPlayer(request.getName(), sqlDate, request.getEmail(), request.getRolle(), request.getTeamName(), request.getPosition());
+        player.setId(request.getId());
+
+        dbCommands.editFootballPlayer(connection, player);
+
+        long responseSeconds = player.getBirthday().getTime() / 1000;
+        Timestamp responseTimestamp = Timestamp.newBuilder().setSeconds(responseSeconds).build();
+        PlayerMessage response = PlayerMessage.newBuilder()
+                .setId(player.getId())
+                .setName(player.getName())
+                .setBirthday(responseTimestamp)
+                .setRolle(player.getRole())
+                .setTeamName(player.getTeamName())
+                .setPosition(player.getPosition())
+                .build();
+        System.out.println(response);
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

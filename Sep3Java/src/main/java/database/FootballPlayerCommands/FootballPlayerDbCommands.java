@@ -107,4 +107,32 @@ public class FootballPlayerDbCommands {
             throw new RuntimeException(e);
         }
     }
+
+    public void editFootballPlayer(Connection connection, FootballPlayer player) {
+        String sql = "update footballplayer \n" +
+                "set fullname = ?, \n" +
+                "birthday = ?, \n" +
+                "email = ?, \n" +
+                "role = ?, \n" +
+                "teamname = ?, \n" +
+                "position = ? \n" +
+                "where playerid = ?;";
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, player.getName());
+            preparedStatement.setDate(2, new java.sql.Date(player.getBirthday().getTime()));
+            preparedStatement.setString(3, player.getEmail());
+            preparedStatement.setString(4, player.getRole());
+            preparedStatement.setString(5, player.getTeamName());
+            preparedStatement.setString(6, player.getPosition());
+            preparedStatement.setInt(7, player.getId());
+
+            preparedStatement.executeUpdate();
+            System.out.println("Football player edited");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
