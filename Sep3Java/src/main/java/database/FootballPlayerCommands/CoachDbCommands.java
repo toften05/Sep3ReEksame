@@ -54,9 +54,11 @@ public class CoachDbCommands {
                 String email = resultSet.getString("email");
                 String role = resultSet.getString("role");
                 String teamName = resultSet.getString("teamname");
+                int id = resultSet.getInt("coachid");
 
 
                 FootballCoach footballCoach = new FootballCoach(name, birthday, initials, email, role, teamName );
+                footballCoach.setId(id);
                 footballCoaches.add(footballCoach);
             }
         } catch (SQLException e) {

@@ -47,6 +47,15 @@ public class PlayerGrpcClient : IFootballPlayerGrpcClient
         List<Player> playersToReturn = FootballPlayerGrpcHandler.FromMessageToPlayers(replyMessage);
         return playersToReturn;
     }
+    
+    public async Task<Player> EditAsync(PlayerCreationDTO dto)
+    {
+        var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
+        
+        PlayerMessage reply = await client.EditPlayerAsync(FootballPlayerGrpcHandler.FromPlayerToMessage(dto));
+        Player userToReturn = FootballPlayerGrpcHandler.FromMessageToPlayer(reply);
+        return userToReturn;
+    }
 
 }
 

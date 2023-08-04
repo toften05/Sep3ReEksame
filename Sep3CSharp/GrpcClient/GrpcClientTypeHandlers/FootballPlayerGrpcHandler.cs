@@ -49,13 +49,28 @@ public class FootballPlayerGrpcHandler
     {
         Player playerToReturn = new Player
         {
-            Name = player.Name ?? "",
             Id = player.Id,
+            Name = player.Name ?? "",
             DateOfBirth = player.Birthday?.ToDateTime() ?? DateTime.MinValue,
             Email = player.Email ?? "",
             Role = player.Rolle ?? "",
             TeamName = player.TeamName ?? "teamname",
             Position = player.Position ?? ""
+        };
+        return playerToReturn;
+    }
+    
+    public static PlayerMessage FromPlayerToMessage(PlayerCreationDTO playerToCreate)
+    {
+        PlayerMessage playerToReturn = new PlayerMessage
+        {
+            Id = playerToCreate.Id,
+            Name = playerToCreate.Name,
+            Birthday = Timestamp.FromDateTime(playerToCreate.DateOfBirth.ToUniversalTime()),
+            Email = playerToCreate.Email,
+            Rolle = playerToCreate.Role,
+            TeamName = playerToCreate.TeamName,
+            Position = playerToCreate.Position
         };
         return playerToReturn;
     }

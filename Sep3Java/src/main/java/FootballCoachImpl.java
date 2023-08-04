@@ -58,6 +58,7 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
             String email = coach.getEmail();
             String role = coach.getRole();
             String teamName = coach.getTeamName();
+            int id = coach.getId();
 
             CoachMessage.Builder coachMessageBuilder = CoachMessage.newBuilder();
 
@@ -90,7 +91,7 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
             }
 
 
-           // coachMessageBuilder.setId(id);
+           coachMessageBuilder.setId(id);
 
             CoachMessage coachMessage = coachMessageBuilder.build();
             response.addCoaches(coachMessage);

@@ -2,6 +2,7 @@
 @using Domain.Model
 @using HttpClients.ClientInterfaces
 @inject IFootballPlayerService PlayerService
+@inject NavigationManager _nav;
 
 <h3 style="text-align: center">Overview of all players</h3>
 
@@ -43,7 +44,7 @@ else
                 <td>@player.Role</td>
                 <td>@player.TeamName</td>
                 <td>@player.Position</td>
-                <td><button>edit player</button></td>
+                <td><button onclick="@(()=>_nav.NavigateTo("/player/edit/" + player.Id))">edit player</button></td>
             </tr>
         }
         </tbody>

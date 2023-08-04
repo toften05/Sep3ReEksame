@@ -1,15 +1,14 @@
 using Domain.DTOs;
 using Domain.Model;
 using Logic.LogicInterfaces;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace WebAPI.Controllers;
 
-
-
 [ApiController]
-[Route("[controller]")]
+[Microsoft.AspNetCore.Mvc.Route("[controller]")]
 public class PlayerController : ControllerBase
 {
     private readonly IPlayerLogic playerLogic;
@@ -20,32 +19,48 @@ public class PlayerController : ControllerBase
     }
 
 
-[HttpPost]
-public async Task<ActionResult<Player>> CreateAsync(PlayerCreationDTO dto)
-{
-    try
+    [HttpPost]
+    public async Task<ActionResult<Player>> CreateAsync(PlayerCreationDTO dto)
     {
-        Player player = await playerLogic.CreateAsync(dto);
-        return Created($"/player/{player.Id}", player);
+        try
+        {
+            Player player = await playerLogic.CreateAsync(dto);
+            return Created($"/player/{player.Id}", player);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
     }
-    catch (Exception e)
+
+    [HttpGet]
+    public async Task<ActionResult<List<Player>>> GetAsync()
     {
-        Console.WriteLine(e);
-        return StatusCode(500, e.Message);
+        try
+        {
+            List<Player> players = await playerLogic.GetAsync();
+            return Ok(players);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
     }
-}
-[HttpGet]
-public async Task<ActionResult<List<Player>>> GetAsync()
-{
-    try
+
+    [HttpPut]
+    public async Task<ActionResult<Player>> EditAsync(PlayerCreationDTO dto)
     {
-        List<Player> players = await playerLogic.GetAsync();
-        return Ok(players);
+        try
+        {
+            Player player = await playerLogic.EditAsync(dto);
+            return Created($"/player/{player.Id}", player);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
     }
-    catch (Exception e)
-    {
-        Console.WriteLine(e);
-        return StatusCode(500, e.Message);
-    }
-}
 }
