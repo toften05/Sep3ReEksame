@@ -29,15 +29,15 @@
 <div class="form-group">
     <label for="initials">Initials:</label>
     <input type="text" @bind="@initials" @bind:event="oninput" />
-     @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
+    @if (!string.IsNullOrEmpty(resultMsg))
+    {
+        <label style="color: @color">@resultMsg</label>
+    }
 </div>
 
 <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(division))" class="acceptbtn">Create</button>
-    </div>
+    <button @onclick="Create" disabled="@(string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(division))" class="acceptbtn">Create</button>
+</div>
 
 
 @code {
