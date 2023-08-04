@@ -53,26 +53,26 @@ public class CoachLogic : ICoachLogic
         if (coachName.Length < 3)
             throw new Exception("Name must be at least 3 characters!");
 
-        if (coachName.Length > 50)
-            throw new Exception("Name must be less than 16 characters!");
+        if (coachName.Length >= 50)
+            throw new Exception("Name must be less than or equal to 50 characters!");
         
         if (!coachEmail.Contains("@"))
         {
             throw new Exception("Email must contain a @ in order to be valid.");
         }
 
-        if (coachEmail.Length > 30)
+        if (coachEmail.Length >= 30)
         {
-            throw new Exception("Email must be less than 30 characters!");
+            throw new Exception("Email must be less than or equal to 30 characters!");
         }
 
-        if (coachRole.Length > 30)
+        if (coachRole.Length >= 30)
         {
-            throw new Exception("Role must be less than 30 characters!");
-            
+            throw new Exception("Role must be less than or equal to 30 characters!");
         }
+        
 
-        if (coachInitials.Length >= 3 )
+        if (coachInitials.Length <= 3 )
         {
             throw new Exception("Initials must be a maximum of 3 characters!");
         }

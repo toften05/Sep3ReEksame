@@ -39,21 +39,22 @@ public class PlayerLogic : IPlayerLogic
         string playerName = playerToCreate.Name;
         string playeremail = playerToCreate.Email;
         string playerRole = playerToCreate.Role;
-        String playerPostitoin = playerToCreate.Position;
+        String playerPosition = playerToCreate.Position;
 
         if (playerName.Length < 3)
             throw new Exception("Name must be at least 3 characters!");
 
-        if (playerName.Length > 15)
-            throw new Exception("Name must be less than 16 characters!");
+        if (playerName.Length >= 50)
+            throw new Exception("Name must be less than or equal to 50 characters!");
+        
         if (!playeremail.Contains("@"))
         {
             throw new Exception("Email must contain a @ in order to be valid.");
         }
 
-        if (playeremail.Length > 30)
+        if (playeremail.Length >= 30)
         {
-            throw new Exception("Email must be less than 30 characters");
+            throw new Exception("Email must be less than or equal to 30 characters");
         }
 
         if (playerRole.Length < 3)
@@ -61,18 +62,18 @@ public class PlayerLogic : IPlayerLogic
             throw new Exception("The role must be at least 3 characters");
         }
 
-        if (playerRole.Length > 30)
+        if (playerRole.Length >= 30)
         {
-            throw new Exception("The role must be less than 30 characters");
+            throw new Exception("The role must be less than or equal to 30 characters");
         }
-        if (playerPostitoin.Length < 3)
+        if (playerPosition.Length < 3)
         {
             throw new Exception("The position must be at least 3 characters");
         }
 
-        if (playerPostitoin.Length > 30)
+        if (playerPosition.Length >= 30)
         {
-            throw new Exception("The position must be less than 30 characters");
+            throw new Exception("The position must be less than or equal 30 characters");
         }
         {
             
