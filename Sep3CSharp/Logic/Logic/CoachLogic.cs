@@ -32,6 +32,7 @@ public class CoachLogic : ICoachLogic
     public async Task<Coach> CreateCoachAsync(CoachCreationDto dto)
     {
         Coach result = await _coachGrpcClient.CreateAsync(dto);
+        ValidateData(dto);
 
         return result;
     }
