@@ -10,7 +10,7 @@
     <h3>Create Coach</h3>
       <EditForm Model="this">
     <div class="form-group field">
-        <label>Username:</label>
+        <label>Fullname:</label>
         <input type="text" @bind="name" @bind:event="oninput"/>
         @if (!string.IsNullOrEmpty(resultMsg))
         {
@@ -51,8 +51,8 @@
         }
         
     </div>
-    
-     @if (teams != null)
+<label>Team:</label>
+          @if (teams != null)
                     {
                         <select @bind="@teamName">
                             @foreach (var team in teams)
