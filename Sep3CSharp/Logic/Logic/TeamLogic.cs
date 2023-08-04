@@ -35,17 +35,22 @@ public class TeamLogic : ITeamLogic
 
         if (initials.Length > 3)
         {
-            throw new Exception("Initials must be 3 characters or below");
+            throw new Exception("Initial must be 3 characters or less");
         }
 
-        if (teamName.Length > 30)
+        if (teamName.Length >= 30)
         {
-            throw new Exception("Teamname must be below 30 chracters");
+            throw new Exception("Teamname must be below or equal to 30 chracters");
         }
 
-        if (division.Length > 30)
+        if (teamName.Length < 3)
         {
-            throw new Exception("division must be below 30 characters");
+            throw new Exception("Teamname must be at least 3 characters");
+        }
+
+        if (division.Length >= 30)
+        {
+            throw new Exception("division must be below or equal to 30 characters");
         }
     }
 }
