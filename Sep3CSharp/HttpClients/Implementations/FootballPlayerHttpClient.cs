@@ -46,6 +46,7 @@ public class FootballPlayerHttpClient : IFootballPlayerService
         HttpResponseMessage response = await _httpClient.GetAsync(uri);
         string result = await response.Content.ReadAsStringAsync();
         Console.WriteLine(result);
+        
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(result);
@@ -57,4 +58,24 @@ public class FootballPlayerHttpClient : IFootballPlayerService
         })!;
         return users;
     }
+    
+    public async Task<Player> Edit(PlayerCreationDTO dto)
+    {
+        
+        Console.WriteLine($"Base address: {_httpClient.BaseAddress}"); 
+        
+        HttpResponseMessage response = await _httpClient.PutAsJsonAsync("/player", dto);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        Player player = JsonSerializer.Deserialize<Player>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return player;
+    }
+    
 }

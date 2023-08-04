@@ -9,4 +9,6 @@ public interface IFootballPlayerGrpcClient
     Task<Player?> GetByPlayerNameAsync(string playerName);
      Task<List<Player>> GetAsync();
 
+     Task<Player> EditAsync(PlayerCreationDTO dto);
+
 }

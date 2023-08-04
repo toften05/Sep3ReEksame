@@ -10,28 +10,30 @@ namespace Logic.Logic;
 public class PlayerLogic : IPlayerLogic
 {
     private readonly IFootballPlayerGrpcClient _footballPlayerGrpcClient;
-    
+
     public PlayerLogic(IFootballPlayerGrpcClient footballPlayerGrpcClient)
     {
-        _footballPlayerGrpcClient = footballPlayerGrpcClient ;
+        _footballPlayerGrpcClient = footballPlayerGrpcClient;
     }
+
     public async Task<Player> CreateAsync(PlayerCreationDTO playerToCreate)
     {
         Player? existing = await _footballPlayerGrpcClient.GetByPlayerNameAsync(playerToCreate.Name);
-        
+
         if (existing != null)
             throw new Exception("Username already taken!");
 
         ValidateData(playerToCreate);
 
         Player created = await _footballPlayerGrpcClient.CreateAsync(playerToCreate);
-    
+
         return created;
     }
 
     public Task<List<Player>> GetAsync()
     {
-        return _footballPlayerGrpcClient.GetAsync();}
+        return _footballPlayerGrpcClient.GetAsync();
+    }
 
 
     private static void ValidateData(PlayerCreationDTO playerToCreate)
@@ -55,9 +57,24 @@ public class PlayerLogic : IPlayerLogic
         {
             throw new Exception("the Role must be at least 3 characters");
         }
+
         if (playerPostitoin.Length < 3)
         {
             throw new Exception("the positoin must be at least 3 characters");
         }
+    }
+
+    public async Task<Player> EditAsync(PlayerCreationDTO dto)
+    {
+        Player? existing = await _footballPlayerGrpcClient.GetByPlayerNameAsync(dto.Name);
+
+        if (existing != null)
+            throw new Exception("Username already taken!");
+
+        ValidateData(dto);
+
+        Player created = await _footballPlayerGrpcClient.EditAsync(dto);
+
+        return created;
     }
 }

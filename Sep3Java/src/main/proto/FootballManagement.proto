@@ -92,6 +92,7 @@ service FootballPlayerService {
   rpc CreatePlayer (PlayerCreationDTOMessage) returns (PlayerMessage);
   rpc getAllPlayers(AllPlayersRequest) returns (ListPlayerMessage);
   rpc getByUsername (StringRequest) returns (PlayerMessage);
+  rpc EditPlayer(PlayerMessage) returns (PlayerMessage);
 }
 
 
