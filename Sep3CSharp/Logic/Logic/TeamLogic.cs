@@ -35,7 +35,7 @@ public class TeamLogic : ITeamLogic
 
         if (initials.Length > 3)
         {
-            throw new Exception("Initials must be 3 characters or below");
+            throw new Exception("Initial must be 3 characters or less");
         }
 
         if (teamName.Length > 30)
