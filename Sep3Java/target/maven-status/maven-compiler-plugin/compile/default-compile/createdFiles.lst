@@ -31,7 +31,6 @@ Domain/TeamCreationDTOMessage$1.class
 Domain/PlayerMessageOrBuilder.class
 Domain/CoachServiceGrpc$CoachServiceImplBase.class
 Domain/FootballPlayerServiceGrpc$FootballPlayerServiceMethodDescriptorSupplier.class
-database/FootballPlayerCommands/ITeamDbCommand.class
 Domain/FootballPlayerServiceGrpc$FootballPlayerServiceBaseDescriptorSupplier.class
 Domain/AllPlayersRequest$1.class
 FootballPlayerServiceImpl.class
