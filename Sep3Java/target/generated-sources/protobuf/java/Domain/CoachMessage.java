@@ -17,10 +17,10 @@ private static final long serialVersionUID = 0L;
   }
   private CoachMessage() {
     name_ = "";
-    birthday_ = "";
     initials_ = "";
     email_ = "";
     role_ = "";
+    teamName_ = "";
   }
 
   @java.lang.Override
@@ -65,9 +65,16 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.Timestamp.Builder subBuilder = null;
+            if (birthday_ != null) {
+              subBuilder = birthday_.toBuilder();
+            }
+            birthday_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(birthday_);
+              birthday_ = subBuilder.buildPartial();
+            }
 
-            birthday_ = s;
             break;
           }
           case 34: {
@@ -86,6 +93,12 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             role_ = s;
+            break;
+          }
+          case 58: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            teamName_ = s;
             break;
           }
           default: {
@@ -170,41 +183,29 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int BIRTHDAY_FIELD_NUMBER = 3;
-  private volatile java.lang.Object birthday_;
+  private com.google.protobuf.Timestamp birthday_;
   /**
-   * <code>string birthday = 3;</code>
+   * <code>.google.protobuf.Timestamp birthday = 3;</code>
+   * @return Whether the birthday field is set.
+   */
+  @java.lang.Override
+  public boolean hasBirthday() {
+    return birthday_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Timestamp birthday = 3;</code>
    * @return The birthday.
    */
   @java.lang.Override
-  public java.lang.String getBirthday() {
-    java.lang.Object ref = birthday_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      birthday_ = s;
-      return s;
-    }
+  public com.google.protobuf.Timestamp getBirthday() {
+    return birthday_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
   }
   /**
-   * <code>string birthday = 3;</code>
-   * @return The bytes for birthday.
+   * <code>.google.protobuf.Timestamp birthday = 3;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getBirthdayBytes() {
-    java.lang.Object ref = birthday_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      birthday_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder() {
+    return getBirthday();
   }
 
   public static final int INITIALS_FIELD_NUMBER = 4;
@@ -321,6 +322,44 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int TEAMNAME_FIELD_NUMBER = 7;
+  private volatile java.lang.Object teamName_;
+  /**
+   * <code>string teamName = 7;</code>
+   * @return The teamName.
+   */
+  @java.lang.Override
+  public java.lang.String getTeamName() {
+    java.lang.Object ref = teamName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      teamName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string teamName = 7;</code>
+   * @return The bytes for teamName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getTeamNameBytes() {
+    java.lang.Object ref = teamName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      teamName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -341,8 +380,8 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
     }
-    if (!getBirthdayBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, birthday_);
+    if (birthday_ != null) {
+      output.writeMessage(3, getBirthday());
     }
     if (!getInitialsBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, initials_);
@@ -352,6 +391,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!getRoleBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, role_);
+    }
+    if (!getTeamNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, teamName_);
     }
     unknownFields.writeTo(output);
   }
@@ -369,8 +411,9 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
     }
-    if (!getBirthdayBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, birthday_);
+    if (birthday_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getBirthday());
     }
     if (!getInitialsBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, initials_);
@@ -380,6 +423,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!getRoleBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, role_);
+    }
+    if (!getTeamNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, teamName_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -400,14 +446,19 @@ private static final long serialVersionUID = 0L;
         != other.getId()) return false;
     if (!getName()
         .equals(other.getName())) return false;
-    if (!getBirthday()
-        .equals(other.getBirthday())) return false;
+    if (hasBirthday() != other.hasBirthday()) return false;
+    if (hasBirthday()) {
+      if (!getBirthday()
+          .equals(other.getBirthday())) return false;
+    }
     if (!getInitials()
         .equals(other.getInitials())) return false;
     if (!getEmail()
         .equals(other.getEmail())) return false;
     if (!getRole()
         .equals(other.getRole())) return false;
+    if (!getTeamName()
+        .equals(other.getTeamName())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -423,14 +474,18 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getId();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
-    hash = (53 * hash) + getBirthday().hashCode();
+    if (hasBirthday()) {
+      hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
+      hash = (53 * hash) + getBirthday().hashCode();
+    }
     hash = (37 * hash) + INITIALS_FIELD_NUMBER;
     hash = (53 * hash) + getInitials().hashCode();
     hash = (37 * hash) + EMAIL_FIELD_NUMBER;
     hash = (53 * hash) + getEmail().hashCode();
     hash = (37 * hash) + ROLE_FIELD_NUMBER;
     hash = (53 * hash) + getRole().hashCode();
+    hash = (37 * hash) + TEAMNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getTeamName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -568,13 +623,19 @@ private static final long serialVersionUID = 0L;
 
       name_ = "";
 
-      birthday_ = "";
-
+      if (birthdayBuilder_ == null) {
+        birthday_ = null;
+      } else {
+        birthday_ = null;
+        birthdayBuilder_ = null;
+      }
       initials_ = "";
 
       email_ = "";
 
       role_ = "";
+
+      teamName_ = "";
 
       return this;
     }
@@ -604,10 +665,15 @@ private static final long serialVersionUID = 0L;
       Domain.CoachMessage result = new Domain.CoachMessage(this);
       result.id_ = id_;
       result.name_ = name_;
-      result.birthday_ = birthday_;
+      if (birthdayBuilder_ == null) {
+        result.birthday_ = birthday_;
+      } else {
+        result.birthday_ = birthdayBuilder_.build();
+      }
       result.initials_ = initials_;
       result.email_ = email_;
       result.role_ = role_;
+      result.teamName_ = teamName_;
       onBuilt();
       return result;
     }
@@ -663,9 +729,8 @@ private static final long serialVersionUID = 0L;
         name_ = other.name_;
         onChanged();
       }
-      if (!other.getBirthday().isEmpty()) {
-        birthday_ = other.birthday_;
-        onChanged();
+      if (other.hasBirthday()) {
+        mergeBirthday(other.getBirthday());
       }
       if (!other.getInitials().isEmpty()) {
         initials_ = other.initials_;
@@ -677,6 +742,10 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getRole().isEmpty()) {
         role_ = other.role_;
+        onChanged();
+      }
+      if (!other.getTeamName().isEmpty()) {
+        teamName_ = other.teamName_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -815,80 +884,123 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object birthday_ = "";
+    private com.google.protobuf.Timestamp birthday_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> birthdayBuilder_;
     /**
-     * <code>string birthday = 3;</code>
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
+     * @return Whether the birthday field is set.
+     */
+    public boolean hasBirthday() {
+      return birthdayBuilder_ != null || birthday_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
      * @return The birthday.
      */
-    public java.lang.String getBirthday() {
-      java.lang.Object ref = birthday_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        birthday_ = s;
-        return s;
+    public com.google.protobuf.Timestamp getBirthday() {
+      if (birthdayBuilder_ == null) {
+        return birthday_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
       } else {
-        return (java.lang.String) ref;
+        return birthdayBuilder_.getMessage();
       }
     }
     /**
-     * <code>string birthday = 3;</code>
-     * @return The bytes for birthday.
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
      */
-    public com.google.protobuf.ByteString
-        getBirthdayBytes() {
-      java.lang.Object ref = birthday_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        birthday_ = b;
-        return b;
+    public Builder setBirthday(com.google.protobuf.Timestamp value) {
+      if (birthdayBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        birthday_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        birthdayBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string birthday = 3;</code>
-     * @param value The birthday to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
      */
     public Builder setBirthday(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      birthday_ = value;
-      onChanged();
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (birthdayBuilder_ == null) {
+        birthday_ = builderForValue.build();
+        onChanged();
+      } else {
+        birthdayBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string birthday = 3;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
+     */
+    public Builder mergeBirthday(com.google.protobuf.Timestamp value) {
+      if (birthdayBuilder_ == null) {
+        if (birthday_ != null) {
+          birthday_ =
+            com.google.protobuf.Timestamp.newBuilder(birthday_).mergeFrom(value).buildPartial();
+        } else {
+          birthday_ = value;
+        }
+        onChanged();
+      } else {
+        birthdayBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
      */
     public Builder clearBirthday() {
-      
-      birthday_ = getDefaultInstance().getBirthday();
-      onChanged();
+      if (birthdayBuilder_ == null) {
+        birthday_ = null;
+        onChanged();
+      } else {
+        birthday_ = null;
+        birthdayBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string birthday = 3;</code>
-     * @param value The bytes for birthday to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
      */
-    public Builder setBirthdayBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.Timestamp.Builder getBirthdayBuilder() {
       
-      birthday_ = value;
       onChanged();
-      return this;
+      return getBirthdayFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder() {
+      if (birthdayBuilder_ != null) {
+        return birthdayBuilder_.getMessageOrBuilder();
+      } else {
+        return birthday_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        getBirthdayFieldBuilder() {
+      if (birthdayBuilder_ == null) {
+        birthdayBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                getBirthday(),
+                getParentForChildren(),
+                isClean());
+        birthday_ = null;
+      }
+      return birthdayBuilder_;
     }
 
     private java.lang.Object initials_ = "";
@@ -1115,6 +1227,82 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       role_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object teamName_ = "";
+    /**
+     * <code>string teamName = 7;</code>
+     * @return The teamName.
+     */
+    public java.lang.String getTeamName() {
+      java.lang.Object ref = teamName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        teamName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string teamName = 7;</code>
+     * @return The bytes for teamName.
+     */
+    public com.google.protobuf.ByteString
+        getTeamNameBytes() {
+      java.lang.Object ref = teamName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        teamName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string teamName = 7;</code>
+     * @param value The teamName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTeamName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      teamName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string teamName = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTeamName() {
+      
+      teamName_ = getDefaultInstance().getTeamName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string teamName = 7;</code>
+     * @param value The bytes for teamName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTeamNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      teamName_ = value;
       onChanged();
       return this;
     }

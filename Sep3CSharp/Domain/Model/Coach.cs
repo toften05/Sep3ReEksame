@@ -11,6 +11,5 @@ public class Coach
     
     public string teamName { get; set; }
     
-   // public Team Team { get; set; }
 
 }

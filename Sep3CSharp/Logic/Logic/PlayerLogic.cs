@@ -1,7 +1,6 @@
 using Domain.DTOs;
 using Domain.Model;
 using GrpcClient.ClientInterfaces;
-using Logic.DAOInterfaces;
 using Logic.LogicInterfaces;
 
 

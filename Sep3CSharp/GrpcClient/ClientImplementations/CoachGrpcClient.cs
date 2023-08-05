@@ -9,9 +9,6 @@ namespace GrpcClient.ClientImplementations;
 
 public class CoachGrpcClient : ICoachGrpcClient
 {
-    public CoachGrpcClient()
-    {
-    }
 
     public async Task<Coach> CreateAsync(CoachCreationDto coachDto)
     {
@@ -29,20 +26,5 @@ public class CoachGrpcClient : ICoachGrpcClient
         List<Coach> coachesToReturn = CoachGrpcHandler.FromMessageToCoaches(replyMessage);
         return coachesToReturn;
     }
-    /*
-    public async Task<Coach?> GetByCoachNameAsync(string coachName)
-    {
-        try
-        {
-            var client = CoachGrpcHandler.GetCoachClient();
-            CoachMessage replyMessage = await client.getByNameAsync(new StringRequest() {String = coachName});
-            Coach coachToReturn = CoachGrpcHandler.FromMessageToCoach(replyMessage);
-            return coachToReturn;
-        }
-        catch (RpcException e) when (e.StatusCode == StatusCode.NotFound)
-        {
-            return null;
-        }
-    }
-    */
+
 }
