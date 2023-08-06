@@ -3,11 +3,11 @@ package Shared;
 import java.util.Date;
 
 public class FootballCoach {
-    public int Id ;
-    public String fullName ;
-    public java.util.Date birthday ;
-    public String initials ;
-    public String email ;
+    public int Id;
+    public String fullName;
+    public java.util.Date birthday;
+    public String initials;
+    public String email;
     public String role;
     public String teamName;
 
@@ -69,13 +69,11 @@ public class FootballCoach {
         this.role = role;
     }
 
-    public String getTeamName()
-    {
+    public String getTeamName() {
         return teamName;
     }
 
-    public void setTeamName(String teamName)
-    {
+    public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
 
@@ -84,10 +82,11 @@ public class FootballCoach {
         return "FootballCoach{" +
                 "Id=" + Id +
                 ", fullName='" + fullName + '\'' +
-                ", birthday='" + birthday + '\'' +
+                ", birthday=" + birthday +
                 ", initials='" + initials + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", teamName='" + teamName + '\'' +
                 '}';
     }
 }

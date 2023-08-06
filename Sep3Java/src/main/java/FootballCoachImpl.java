@@ -1,17 +1,15 @@
 import Domain.*;
 import Shared.FootballCoach;
-import Shared.FootballPlayer;
 import com.google.protobuf.Timestamp;
 import database.DatabaseConnection.DatabaseConnection;
 import database.FootballPlayerCommands.CoachDbCommands;
-import database.FootballPlayerCommands.FootballPlayerDbCommands;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
+public class FootballCoachImpl extends CoachServiceGrpc.CoachServiceImplBase {
     public void createCoach(CoachCreationDtoMessage request, StreamObserver<CoachMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
@@ -19,8 +17,8 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
         long seconds = request.getBirthday().getSeconds();
         Date date = new Date(seconds * 1000);
-        FootballCoach coach = new FootballCoach(request.getName(),date ,request.getInitials(), request.getEmail(), request.getRole(),
-            request.getTeamName());
+        FootballCoach coach = new FootballCoach(request.getName(), date, request.getInitials(), request.getEmail(), request.getRole(),
+                request.getTeamName());
 
         dbCommands.createFootballCoach(connection, coach);
 
@@ -68,8 +66,8 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
             if (birthday != null) {
                 Timestamp timestampBirthDay = Timestamp.newBuilder()
-                    .setSeconds(birthday.getTime() / 1000)
-                    .build();
+                        .setSeconds(birthday.getTime() / 1000)
+                        .build();
                 coachMessageBuilder.setBirthday(timestampBirthDay);
             }
 
@@ -91,7 +89,7 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
             }
 
 
-           coachMessageBuilder.setId(id);
+            coachMessageBuilder.setId(id);
 
             CoachMessage coachMessage = coachMessageBuilder.build();
             response.addCoaches(coachMessage);

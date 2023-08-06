@@ -1,9 +1,7 @@
 import Domain.*;
 import Shared.Team;
 import database.DatabaseConnection.DatabaseConnection;
-import database.FootballPlayerCommands.FootballPlayerDbCommands;
 import database.FootballPlayerCommands.TeamDbCommands;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
@@ -12,8 +10,7 @@ import java.sql.SQLException;
 public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
 
     @Override
-    public void createTeam(TeamCreationDTOMessage request, StreamObserver<TeamMessage> responseObserver)
-    {
+    public void createTeam(TeamCreationDTOMessage request, StreamObserver<TeamMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         TeamDbCommands dbCommands = new TeamDbCommands();
@@ -37,7 +34,7 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
         }
     }
 
-@Override
+    @Override
     public void getAllTeams(AllTeamsRequest request, StreamObserver<ListTeamMessage> responseObserver) {
         System.out.println("getAllTeams called");
         DatabaseConnection db = new DatabaseConnection();
@@ -50,7 +47,6 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
             String teamName = teams.getTeamName();
             String initials = teams.getInitials();
             String division = teams.getDivision();
-
 
 
             TeamMessage.Builder teamMessageBuilder = TeamMessage.newBuilder();

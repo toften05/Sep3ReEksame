@@ -138,25 +138,6 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         }
     }
 
-
-    public void deletePlayer(PlayerMessage request, StreamObserver<Empty> responseObserver) {
-        System.out.println("deletePlayer called");
-        DatabaseConnection db = new DatabaseConnection();
-        Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
-
-        dbCommands.deleteFootballPlayer(connection, request.getId());
-
-        responseObserver.onNext(Empty.newBuilder().build());
-        responseObserver.onCompleted();
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void editPlayer(PlayerMessage request, StreamObserver<PlayerMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
@@ -183,6 +164,24 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         System.out.println(response);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePlayer(PlayerMessage request, StreamObserver<Empty> responseObserver) {
+        System.out.println("deletePlayer called");
+        DatabaseConnection db = new DatabaseConnection();
+        Connection connection = db.getConnection();
+        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+
+        dbCommands.deleteFootballPlayer(connection, request.getId());
+
+        responseObserver.onNext(Empty.newBuilder().build());
+        responseObserver.onCompleted();
+
         try {
             connection.close();
         } catch (SQLException e) {

@@ -1,7 +1,6 @@
 package database.FootballPlayerCommands;
 
 import Shared.FootballCoach;
-import Shared.FootballPlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,26 +12,25 @@ import java.util.List;
 
 public class CoachDbCommands {
 
-    public void createFootballCoach(Connection connection, FootballCoach coach){
+    public void createFootballCoach(Connection connection, FootballCoach coach) {
 
         String sql = "INSERT INTO footballcoach(fullname, dateofbirth, email, role, teamname, initials) VALUES(?,?,?,?,?,?);";
 
 
         PreparedStatement preparedStatement;
 
-       try {
+        try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, coach.getFullName());
             preparedStatement.setDate(2, new java.sql.Date(coach.getBirthday().getTime()));
-           preparedStatement.setString(3, coach.getEmail());
-           preparedStatement.setString(4, coach.getRole());
-           preparedStatement.setString(5, coach.getTeamName());
-           preparedStatement.setString(6, coach.getInitials());
-           preparedStatement.executeUpdate();
+            preparedStatement.setString(3, coach.getEmail());
+            preparedStatement.setString(4, coach.getRole());
+            preparedStatement.setString(5, coach.getTeamName());
+            preparedStatement.setString(6, coach.getInitials());
+            preparedStatement.executeUpdate();
 
             System.out.println("Football coach created");
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -57,7 +55,7 @@ public class CoachDbCommands {
                 int id = resultSet.getInt("coachid");
 
 
-                FootballCoach footballCoach = new FootballCoach(name, birthday, initials, email, role, teamName );
+                FootballCoach footballCoach = new FootballCoach(name, birthday, initials, email, role, teamName);
                 footballCoach.setId(id);
                 footballCoaches.add(footballCoach);
             }
