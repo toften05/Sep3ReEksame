@@ -21,20 +21,14 @@ public class TeamGrpcClient : ITeamClient
         Team teamToReturn = TeamGrpcHandler.FromMessageToTeam(reply);
 
         return teamToReturn;
-
     }
 
-   
-    
+
     public async Task<List<Team>> getAsync()
     {
         var client = TeamGrpcHandler.GetTeamClient();
         ListTeamMessage replyMessage = await client.getAllTeamsAsync(new AllTeamsRequest());
         List<Team> teamsToReturn = TeamGrpcHandler.FromMessageToTeams(replyMessage);
         return teamsToReturn;
-
     }
-    
 }
-
-  

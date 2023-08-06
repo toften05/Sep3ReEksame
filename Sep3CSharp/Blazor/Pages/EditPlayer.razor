@@ -72,7 +72,6 @@ else
             <button type="submit" @onclick="Edit" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Save</button>
         </div>
     </EditForm>
-    
 }
 
 
@@ -80,9 +79,9 @@ else
 {
     [Parameter]
     public int playerid { get; set; }
-    
+
     private string msg = "";
-    
+
     private string name = "";
     private DateTime dateOfBirth = DateTime.Today;
     private string email = "";
@@ -107,16 +106,14 @@ else
 
             oldPlayer = players.First(p => p.Id == playerid);
             Console.WriteLine(oldPlayer.Email);
-
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             msg = e.Message;
         }
-    
     }
-    
+
     private async Task Edit()
     {
         resultMsg = "";

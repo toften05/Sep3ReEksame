@@ -1,6 +1,5 @@
 ﻿using Domain.DTOs;
 using Domain.Model;
-using Grpc.Core;
 using GrpcClient.ClientInterfaces;
 using GrpcClient.GrpcClientTypeHandlers;
 using GrpcServices;
@@ -9,12 +8,12 @@ namespace GrpcClient.ClientImplementations;
 
 public class CoachGrpcClient : ICoachGrpcClient
 {
-
     public async Task<Coach> CreateAsync(CoachCreationDto coachDto)
     {
         var coachClient = CoachGrpcHandler.GetCoachClient();
 
-        CoachMessage reply = await coachClient.CreateCoachAsync(CoachGrpcHandler.FromCoachCreationDtoToMessage(coachDto));
+        CoachMessage reply =
+            await coachClient.CreateCoachAsync(CoachGrpcHandler.FromCoachCreationDtoToMessage(coachDto));
         Coach coachToReturn = CoachGrpcHandler.FromMessageToCoach(reply);
         return coachToReturn;
     }
@@ -26,5 +25,4 @@ public class CoachGrpcClient : ICoachGrpcClient
         List<Coach> coachesToReturn = CoachGrpcHandler.FromMessageToCoaches(replyMessage);
         return coachesToReturn;
     }
-
 }

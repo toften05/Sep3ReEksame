@@ -29,7 +29,7 @@ else
             <th>Team Name</th>
             <th>Initials</th>
             <th>Division</th>
-            
+
         </tr>
         </thead>
         <tbody>
@@ -55,13 +55,12 @@ else
         try
         {
             teams = await teamService.getALlTeamsAsync();
-            
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             msg = e.Message;
         }
-    
     }
+
 }

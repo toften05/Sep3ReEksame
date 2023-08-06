@@ -44,7 +44,9 @@ else
                 <td>@player.Role</td>
                 <td>@player.TeamName</td>
                 <td>@player.Position</td>
-                <td><button onclick="@(()=>_nav.NavigateTo("/player/edit/" + player.Id))">edit player</button></td>
+                <td>
+                    <button onclick="@(() => _nav.NavigateTo("/player/edit/" + player.Id))">edit player</button>
+                </td>
             </tr>
         }
         </tbody>
@@ -67,6 +69,6 @@ else
             Console.WriteLine(e);
             msg = e.Message;
         }
-    
     }
+
 }

@@ -10,7 +10,7 @@
 
 <div class="form-group">
     <label for="teamName">Team Name:</label>
-    <input type="text" @bind="@teamName" @bind:event="oninput" />
+    <input type="text" @bind="@teamName" @bind:event="oninput"/>
     @if (!string.IsNullOrEmpty(resultMsg))
     {
         <label style="color: @color">@resultMsg</label>
@@ -19,7 +19,7 @@
 
 <div class="form-group">
     <label for="division">Division:</label>
-    <input type="text" @bind="@division" @bind:event="oninput" />
+    <input type="text" @bind="@division" @bind:event="oninput"/>
     @if (!string.IsNullOrEmpty(resultMsg))
     {
         <label style="color: @color">@resultMsg</label>
@@ -28,7 +28,7 @@
 
 <div class="form-group">
     <label for="initials">Initials:</label>
-    <input type="text" @bind="@initials" @bind:event="oninput" />
+    <input type="text" @bind="@initials" @bind:event="oninput"/>
     @if (!string.IsNullOrEmpty(resultMsg))
     {
         <label style="color: @color">@resultMsg</label>
@@ -46,7 +46,7 @@
     private string initials = "";
     private string resultMsg = "";
     private string color = "";
-    
+
 
     private async Task Create()
     {
@@ -58,15 +58,13 @@
             initials = "";
             resultMsg = "Team successfully created";
             color = "green";
-  
-            
         }
         catch (Exception e)
         {
-            
             Console.WriteLine(e);
             resultMsg = e.Message;
             color = "red";
         }
     }
+
 }

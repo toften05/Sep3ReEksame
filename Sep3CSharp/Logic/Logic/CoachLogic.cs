@@ -59,7 +59,7 @@ public class CoachLogic : ICoachLogic
         }
         
 
-        if (coachInitials.Length <= 3 )
+        if (coachInitials.Length < 3 )
         {
             throw new Exception("Initials must be a maximum of 3 characters!");
         }
