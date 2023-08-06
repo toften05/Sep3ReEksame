@@ -66,10 +66,17 @@ public class FootballCoachImpl extends CoachServiceGrpc.CoachServiceImplBase {
                     .setSeconds(birthday.getTime() / 1000)
                     .build();
             coachMessageBuilder.setBirthday(timestampBirthDay);
+
             coachMessageBuilder.setInitials(initials);
+
+
             coachMessageBuilder.setEmail(email);
+
             coachMessageBuilder.setRole(role);
+
             coachMessageBuilder.setTeamName(teamName);
+
+
             coachMessageBuilder.setId(id);
 
             CoachMessage coachMessage = coachMessageBuilder.build();
