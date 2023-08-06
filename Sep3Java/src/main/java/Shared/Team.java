@@ -47,4 +47,14 @@ public class Team {
     public void setPlayersOnTeam(List<FootballPlayer> playersOnTeam) {
         PlayersOnTeam = playersOnTeam;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamName='" + teamName + '\'' +
+                ", division='" + division + '\'' +
+                ", initials='" + initials + '\'' +
+                ", PlayersOnTeam=" + PlayersOnTeam +
+                '}';
+    }
 }

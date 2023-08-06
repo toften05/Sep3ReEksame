@@ -27,20 +27,20 @@
             <label>Position:</label>
             <input type="text" @bind="position" @bind:event="oninput"/>
             <label>Team:</label>
-           
-                @if (teams != null)
-                {
-                    <select @bind="@teamName">
-                        @foreach (var team in teams)
-                        {
-                            <option value="@team.teamName">@team.teamName</option>
-                        }
-                    </select>
-                }
-                else
-                {
-                    <p>Loading teams...</p>
-                }
+
+            @if (teams != null)
+            {
+                <select @bind="@teamName">
+                    @foreach (var team in teams)
+                    {
+                        <option value="@team.teamName">@team.teamName</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <p>Loading teams...</p>
+            }
             @if (!string.IsNullOrEmpty(teamName))
             {
                 <p>You selected: @teamName</p>
@@ -68,22 +68,21 @@
     private string color = "";
     private IEnumerable<Team>? teams;
     private string msg = "";
-    
+
     protected override async Task OnInitializedAsync()
     {
         msg = "";
         try
         {
-            teams =  await TeamService.getALlTeamsAsync();
+            teams = await TeamService.getALlTeamsAsync();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             msg = e.Message;
         }
-    
     }
-    
+
     private async Task Create()
     {
         resultMsg = "";
@@ -102,9 +101,5 @@
             color = "red";
         }
     }
-    
-    
-
-    
 
 }

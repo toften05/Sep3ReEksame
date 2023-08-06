@@ -55,7 +55,7 @@ public class PlayerController : ControllerBase
         try
         {
             Player player = await playerLogic.EditAsync(dto);
-            return Created($"/player/{player.Id}", player);
+            return Created($"/player/{player.Id}", dto);
         }
         catch (Exception e)
         {

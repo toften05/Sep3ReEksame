@@ -104,31 +104,34 @@ public final class FootballManagement {
       "\n\010birthday\030\003 \001(\0132\032.google.protobuf.Times" +
       "tamp\022\r\n\005email\030\004 \001(\t\022\r\n\005rolle\030\005 \001(\t\022\020\n\010te" +
       "amName\030\006 \001(\t\022\020\n\010position\030\007 \001(\t\"\023\n\021AllPla" +
-      "yersRequest\"\023\n\021AllCoachesRequest\"h\n\027Coac" +
-      "hCreationDtoMessage\022\014\n\004name\030\001 \001(\t\022\020\n\010bir" +
-      "thday\030\002 \001(\t\022\020\n\010initials\030\003 \001(\t\022\r\n\005email\030\004" +
-      " \001(\t\022\014\n\004role\030\005 \001(\t\"i\n\014CoachMessage\022\n\n\002id" +
-      "\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\020\n\010birthday\030\003 \001(\t\022\020" +
-      "\n\010initials\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\014\n\004role\030" +
-      "\006 \001(\t\"\037\n\rStringRequest\022\016\n\006string\030\001 \001(\t\";" +
-      "\n\021ListPlayerMessage\022&\n\007players\030\001 \003(\0132\025.D" +
-      "omain.PlayerMessage\"9\n\020ListCoachMessage\022" +
-      "%\n\007coaches\030\001 \003(\0132\024.Domain.CoachMessage2\221" +
-      "\001\n\013TeamService\022A\n\nCreateTeam\022\036.Domain.Te" +
-      "amCreationDTOMessage\032\023.Domain.TeamMessag" +
-      "e\022?\n\013getAllTeams\022\027.Domain.AllTeamsReques" +
-      "t\032\027.Domain.ListTeamMessage2\346\001\n\025FootballP" +
-      "layerService\022G\n\014CreatePlayer\022 .Domain.Pl" +
-      "ayerCreationDTOMessage\032\025.Domain.PlayerMe" +
-      "ssage\022E\n\rgetAllPlayers\022\031.Domain.AllPlaye" +
-      "rsRequest\032\031.Domain.ListPlayerMessage\022=\n\r" +
-      "getByUsername\022\025.Domain.StringRequest\032\025.D" +
-      "omain.PlayerMessage2\232\001\n\014CoachService\022D\n\013" +
-      "CreateCoach\022\037.Domain.CoachCreationDtoMes" +
-      "sage\032\024.Domain.CoachMessage\022D\n\rgetAllCoac" +
-      "hes\022\031.Domain.AllCoachesRequest\032\030.Domain." +
-      "ListCoachMessageB\021P\001\252\002\014GrpcServicesb\006pro" +
-      "to3"
+      "yersRequest\"\023\n\021AllCoachesRequest\"\226\001\n\027Coa" +
+      "chCreationDtoMessage\022\014\n\004name\030\001 \001(\t\022,\n\010bi" +
+      "rthday\030\002 \001(\0132\032.google.protobuf.Timestamp" +
+      "\022\020\n\010initials\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\014\n\004rol" +
+      "e\030\005 \001(\t\022\020\n\010teamName\030\006 \001(\t\"\227\001\n\014CoachMessa" +
+      "ge\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022,\n\010birthday" +
+      "\030\003 \001(\0132\032.google.protobuf.Timestamp\022\020\n\010in" +
+      "itials\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\014\n\004role\030\006 \001(" +
+      "\t\022\020\n\010teamName\030\007 \001(\t\"\037\n\rStringRequest\022\016\n\006" +
+      "string\030\001 \001(\t\";\n\021ListPlayerMessage\022&\n\007pla" +
+      "yers\030\001 \003(\0132\025.Domain.PlayerMessage\"9\n\020Lis" +
+      "tCoachMessage\022%\n\007coaches\030\001 \003(\0132\024.Domain." +
+      "CoachMessage2\221\001\n\013TeamService\022A\n\nCreateTe" +
+      "am\022\036.Domain.TeamCreationDTOMessage\032\023.Dom" +
+      "ain.TeamMessage\022?\n\013getAllTeams\022\027.Domain." +
+      "AllTeamsRequest\032\027.Domain.ListTeamMessage" +
+      "2\242\002\n\025FootballPlayerService\022G\n\014CreatePlay" +
+      "er\022 .Domain.PlayerCreationDTOMessage\032\025.D" +
+      "omain.PlayerMessage\022E\n\rgetAllPlayers\022\031.D" +
+      "omain.AllPlayersRequest\032\031.Domain.ListPla" +
+      "yerMessage\022=\n\rgetByUsername\022\025.Domain.Str" +
+      "ingRequest\032\025.Domain.PlayerMessage\022:\n\nEdi" +
+      "tPlayer\022\025.Domain.PlayerMessage\032\025.Domain." +
+      "PlayerMessage2\232\001\n\014CoachService\022D\n\013Create" +
+      "Coach\022\037.Domain.CoachCreationDtoMessage\032\024" +
+      ".Domain.CoachMessage\022D\n\rgetAllCoaches\022\031." +
+      "Domain.AllCoachesRequest\032\030.Domain.ListCo" +
+      "achMessageB\021P\001\252\002\014GrpcServicesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -189,13 +192,13 @@ public final class FootballManagement {
     internal_static_Domain_CoachCreationDtoMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Domain_CoachCreationDtoMessage_descriptor,
-        new java.lang.String[] { "Name", "Birthday", "Initials", "Email", "Role", });
+        new java.lang.String[] { "Name", "Birthday", "Initials", "Email", "Role", "TeamName", });
     internal_static_Domain_CoachMessage_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_Domain_CoachMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Domain_CoachMessage_descriptor,
-        new java.lang.String[] { "Id", "Name", "Birthday", "Initials", "Email", "Role", });
+        new java.lang.String[] { "Id", "Name", "Birthday", "Initials", "Email", "Role", "TeamName", });
     internal_static_Domain_StringRequest_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_Domain_StringRequest_fieldAccessorTable = new

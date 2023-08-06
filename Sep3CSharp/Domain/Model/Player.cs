@@ -1,6 +1,3 @@
-using System.Globalization;
-using Microsoft.VisualBasic;
-
 namespace Domain.Model;
 
 public class Player
@@ -12,8 +9,7 @@ public class Player
     public String? TeamName { get; set; }
     public String? Role { get; set; }
     public string? Position { get; set; }
-    
-    
+
+
     public Team? Team { get; set; }
-    
 }

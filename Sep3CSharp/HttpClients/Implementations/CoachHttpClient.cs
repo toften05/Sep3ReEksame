@@ -4,14 +4,13 @@ using Domain.DTOs;
 using Domain.Model;
 using HttpClients.ClientInterfaces;
 
-namespace DefaultNamespace;
+namespace HttpClients.Implementations;
 
 public class CoachHttpClient : ICoachService
 {
-    
     private readonly HttpClient _httpClient;
-    
-public CoachHttpClient(HttpClient httpClient)
+
+    public CoachHttpClient(HttpClient httpClient)
     {
         var handler = new HttpClientHandler()
         {
@@ -20,12 +19,12 @@ public CoachHttpClient(HttpClient httpClient)
         _httpClient = new HttpClient(handler);
         _httpClient.BaseAddress = new Uri("https://localhost:7091");
     }
-    
-    
+
+
     public async Task<Coach> CreateAsync(CoachCreationDto coachDto)
     {
-        Console.WriteLine($"Base address: {_httpClient.BaseAddress}"); 
-        
+        Console.WriteLine($"Base address: {_httpClient.BaseAddress}");
+
         HttpResponseMessage response = await _httpClient.PostAsJsonAsync("/coach", coachDto);
         string result = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -57,4 +56,4 @@ public CoachHttpClient(HttpClient httpClient)
         })!;
         return coaches;
     }
-    }
+}

@@ -14,21 +14,7 @@ public class CoachLogic : ICoachLogic
     {
         _coachGrpcClient = coachGrpcClient;
     }
-/*
-    public async Task<Coach> CreateCoachAsync(CoachCreationDto createCoach)
-    {
-        Coach? existing = await _coachGrpcClient.GetByCoachNameAsync(createCoach.fullName);
-        
-        if (existing != null)
-            throw new Exception("Name already taken!");
-
-        ValidateData(createCoach);
-
-        Coach created = await _coachGrpcClient.CreateAsync(createCoach);
     
-        return created;
-    }
-    */
     public async Task<Coach> CreateCoachAsync(CoachCreationDto dto)
     {
         Coach result = await _coachGrpcClient.CreateAsync(dto);
@@ -73,7 +59,7 @@ public class CoachLogic : ICoachLogic
         }
         
 
-        if (coachInitials.Length <= 3 )
+        if (coachInitials.Length < 3 )
         {
             throw new Exception("Initials must be a maximum of 3 characters!");
         }

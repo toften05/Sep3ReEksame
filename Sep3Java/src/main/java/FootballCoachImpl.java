@@ -1,17 +1,15 @@
 import Domain.*;
 import Shared.FootballCoach;
-import Shared.FootballPlayer;
 import com.google.protobuf.Timestamp;
 import database.DatabaseConnection.DatabaseConnection;
 import database.FootballPlayerCommands.CoachDbCommands;
-import database.FootballPlayerCommands.FootballPlayerDbCommands;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
+public class FootballCoachImpl extends CoachServiceGrpc.CoachServiceImplBase {
     public void createCoach(CoachCreationDtoMessage request, StreamObserver<CoachMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
@@ -19,8 +17,8 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
         long seconds = request.getBirthday().getSeconds();
         Date date = new Date(seconds * 1000);
-        FootballCoach coach = new FootballCoach(request.getName(),date ,request.getInitials(), request.getEmail(), request.getRole(),
-            request.getTeamName());
+        FootballCoach coach = new FootballCoach(request.getName(), date, request.getInitials(), request.getEmail(), request.getRole(),
+                request.getTeamName());
 
         dbCommands.createFootballCoach(connection, coach);
 
@@ -62,36 +60,24 @@ public class FootballCoachImpl extends  CoachServiceGrpc.CoachServiceImplBase{
 
             CoachMessage.Builder coachMessageBuilder = CoachMessage.newBuilder();
 
-            if (name != null) {
-                coachMessageBuilder.setName(name);
-            }
+            coachMessageBuilder.setName(name);
 
-            if (birthday != null) {
-                Timestamp timestampBirthDay = Timestamp.newBuilder()
+            Timestamp timestampBirthDay = Timestamp.newBuilder()
                     .setSeconds(birthday.getTime() / 1000)
                     .build();
-                coachMessageBuilder.setBirthday(timestampBirthDay);
-            }
+            coachMessageBuilder.setBirthday(timestampBirthDay);
 
-            if (initials != null) {
-                coachMessageBuilder.setInitials(initials);
-            }
+            coachMessageBuilder.setInitials(initials);
 
 
-            if (email != null) {
-                coachMessageBuilder.setEmail(email);
-            }
+            coachMessageBuilder.setEmail(email);
 
-            if (role != null) {
-                coachMessageBuilder.setRole(role);
-            }
+            coachMessageBuilder.setRole(role);
 
-            if (teamName != null) {
-                coachMessageBuilder.setTeamName(teamName);
-            }
+            coachMessageBuilder.setTeamName(teamName);
 
 
-           coachMessageBuilder.setId(id);
+            coachMessageBuilder.setId(id);
 
             CoachMessage coachMessage = coachMessageBuilder.build();
             response.addCoaches(coachMessage);

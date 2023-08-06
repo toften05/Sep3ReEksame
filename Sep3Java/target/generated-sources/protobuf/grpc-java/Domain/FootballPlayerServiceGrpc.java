@@ -108,6 +108,37 @@ public final class FootballPlayerServiceGrpc {
     return getGetByUsernameMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<Domain.PlayerMessage,
+      Domain.PlayerMessage> getEditPlayerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "EditPlayer",
+      requestType = Domain.PlayerMessage.class,
+      responseType = Domain.PlayerMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Domain.PlayerMessage,
+      Domain.PlayerMessage> getEditPlayerMethod() {
+    io.grpc.MethodDescriptor<Domain.PlayerMessage, Domain.PlayerMessage> getEditPlayerMethod;
+    if ((getEditPlayerMethod = FootballPlayerServiceGrpc.getEditPlayerMethod) == null) {
+      synchronized (FootballPlayerServiceGrpc.class) {
+        if ((getEditPlayerMethod = FootballPlayerServiceGrpc.getEditPlayerMethod) == null) {
+          FootballPlayerServiceGrpc.getEditPlayerMethod = getEditPlayerMethod =
+              io.grpc.MethodDescriptor.<Domain.PlayerMessage, Domain.PlayerMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "EditPlayer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.PlayerMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Domain.PlayerMessage.getDefaultInstance()))
+              .setSchemaDescriptor(new FootballPlayerServiceMethodDescriptorSupplier("EditPlayer"))
+              .build();
+        }
+      }
+    }
+    return getEditPlayerMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -177,6 +208,13 @@ public final class FootballPlayerServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetByUsernameMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void editPlayer(Domain.PlayerMessage request,
+        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEditPlayerMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -200,6 +238,13 @@ public final class FootballPlayerServiceGrpc {
                 Domain.StringRequest,
                 Domain.PlayerMessage>(
                   this, METHODID_GET_BY_USERNAME)))
+          .addMethod(
+            getEditPlayerMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                Domain.PlayerMessage,
+                Domain.PlayerMessage>(
+                  this, METHODID_EDIT_PLAYER)))
           .build();
     }
   }
@@ -241,6 +286,14 @@ public final class FootballPlayerServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void editPlayer(Domain.PlayerMessage request,
+        io.grpc.stub.StreamObserver<Domain.PlayerMessage> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getEditPlayerMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -276,6 +329,13 @@ public final class FootballPlayerServiceGrpc {
     public Domain.PlayerMessage getByUsername(Domain.StringRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetByUsernameMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public Domain.PlayerMessage editPlayer(Domain.PlayerMessage request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getEditPlayerMethod(), getCallOptions(), request);
     }
   }
 
@@ -316,11 +376,20 @@ public final class FootballPlayerServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetByUsernameMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Domain.PlayerMessage> editPlayer(
+        Domain.PlayerMessage request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getEditPlayerMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_PLAYER = 0;
   private static final int METHODID_GET_ALL_PLAYERS = 1;
   private static final int METHODID_GET_BY_USERNAME = 2;
+  private static final int METHODID_EDIT_PLAYER = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -349,6 +418,10 @@ public final class FootballPlayerServiceGrpc {
           break;
         case METHODID_GET_BY_USERNAME:
           serviceImpl.getByUsername((Domain.StringRequest) request,
+              (io.grpc.stub.StreamObserver<Domain.PlayerMessage>) responseObserver);
+          break;
+        case METHODID_EDIT_PLAYER:
+          serviceImpl.editPlayer((Domain.PlayerMessage) request,
               (io.grpc.stub.StreamObserver<Domain.PlayerMessage>) responseObserver);
           break;
         default:
@@ -415,6 +488,7 @@ public final class FootballPlayerServiceGrpc {
               .addMethod(getCreatePlayerMethod())
               .addMethod(getGetAllPlayersMethod())
               .addMethod(getGetByUsernameMethod())
+              .addMethod(getEditPlayerMethod())
               .build();
         }
       }

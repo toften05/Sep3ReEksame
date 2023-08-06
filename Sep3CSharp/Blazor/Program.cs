@@ -1,7 +1,6 @@
-
-using DefaultNamespace;
 using HttpClients;
 using HttpClients.ClientInterfaces;
+using HttpClients.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 

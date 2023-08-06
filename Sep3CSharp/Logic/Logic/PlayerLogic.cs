@@ -1,7 +1,6 @@
 using Domain.DTOs;
 using Domain.Model;
 using GrpcClient.ClientInterfaces;
-using Logic.DAOInterfaces;
 using Logic.LogicInterfaces;
 
 
@@ -84,11 +83,6 @@ public class PlayerLogic : IPlayerLogic
 
     public async Task<Player> EditAsync(PlayerCreationDTO dto)
     {
-        Player? existing = await _footballPlayerGrpcClient.GetByPlayerNameAsync(dto.Name);
-
-        if (existing != null)
-            throw new Exception("Username already taken!");
-
         ValidateData(dto);
 
         Player created = await _footballPlayerGrpcClient.EditAsync(dto);
