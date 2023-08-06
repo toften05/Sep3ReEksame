@@ -34,33 +34,6 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
 
             PlayerMessage.Builder playerMessageBuilder = PlayerMessage.newBuilder();
 
-            if (dateOfBirth != null) {
-                Timestamp timestampBirthDay = Timestamp.newBuilder()
-                        .setSeconds(dateOfBirth.getTime() / 1000)
-                        .build();
-                playerMessageBuilder.setBirthday(timestampBirthDay);
-            }
-
-            if (email != null) {
-                playerMessageBuilder.setEmail(email);
-            }
-
-            if (role != null) {
-                playerMessageBuilder.setRolle(role);
-            }
-
-            if (teamName != null) {
-                playerMessageBuilder.setTeamName(teamName);
-            }
-
-            if (position != null) {
-                playerMessageBuilder.setPosition(position);
-            }
-
-            if (name != null) {
-                playerMessageBuilder.setName(name);
-            }
-
             playerMessageBuilder.setId(id);
 
             PlayerMessage playerMessage = playerMessageBuilder.build();

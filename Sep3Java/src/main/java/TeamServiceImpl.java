@@ -50,19 +50,9 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
 
 
             TeamMessage.Builder teamMessageBuilder = TeamMessage.newBuilder();
-
-            if (teamName != null) {
-                teamMessageBuilder.setTeamName(teamName);
-            }
-
-            if (initials != null) {
-                teamMessageBuilder.setInitials(initials);
-            }
-
-            if (division != null) {
-                teamMessageBuilder.setDivision(division);
-            }
-
+            teamMessageBuilder.setTeamName(teamName);
+            teamMessageBuilder.setInitials(initials);
+            teamMessageBuilder.setDivision(division);
 
             TeamMessage teamMessage = teamMessageBuilder.build();
             response.addTeams(teamMessage);

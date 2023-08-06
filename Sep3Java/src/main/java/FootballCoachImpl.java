@@ -60,35 +60,16 @@ public class FootballCoachImpl extends CoachServiceGrpc.CoachServiceImplBase {
 
             CoachMessage.Builder coachMessageBuilder = CoachMessage.newBuilder();
 
-            if (name != null) {
-                coachMessageBuilder.setName(name);
-            }
+            coachMessageBuilder.setName(name);
 
-            if (birthday != null) {
-                Timestamp timestampBirthDay = Timestamp.newBuilder()
-                        .setSeconds(birthday.getTime() / 1000)
-                        .build();
-                coachMessageBuilder.setBirthday(timestampBirthDay);
-            }
-
-            if (initials != null) {
-                coachMessageBuilder.setInitials(initials);
-            }
-
-
-            if (email != null) {
-                coachMessageBuilder.setEmail(email);
-            }
-
-            if (role != null) {
-                coachMessageBuilder.setRole(role);
-            }
-
-            if (teamName != null) {
-                coachMessageBuilder.setTeamName(teamName);
-            }
-
-
+            Timestamp timestampBirthDay = Timestamp.newBuilder()
+                    .setSeconds(birthday.getTime() / 1000)
+                    .build();
+            coachMessageBuilder.setBirthday(timestampBirthDay);
+            coachMessageBuilder.setInitials(initials);
+            coachMessageBuilder.setEmail(email);
+            coachMessageBuilder.setRole(role);
+            coachMessageBuilder.setTeamName(teamName);
             coachMessageBuilder.setId(id);
 
             CoachMessage coachMessage = coachMessageBuilder.build();
