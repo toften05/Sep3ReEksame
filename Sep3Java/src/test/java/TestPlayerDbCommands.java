@@ -28,7 +28,7 @@ public class TestPlayerDbCommands {
         players = playerDbCommands.getAllFootballPlayers(connection.getConnection());
 
         //Tjek for null
-        assertNotEquals(null, players);
+        assertNotNull(players);
 
         //Tjek at den indeholder typen FootballPlayer
         FootballPlayer player = null;
