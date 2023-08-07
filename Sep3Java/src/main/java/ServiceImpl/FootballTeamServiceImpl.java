@@ -16,7 +16,7 @@ public class FootballTeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         TeamDbCommands dbCommands = new TeamDbCommands();
-        FootballTeam footballTeam = new FootballTeam(request.getTeamName(), request.getDivision(), request.getInitials());
+        FootballTeam footballTeam = new FootballTeam(request.getTeamName(), request.getInitials(), request.getDivision());
 
         dbCommands.createTeam(connection, footballTeam);
 

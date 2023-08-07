@@ -21,8 +21,8 @@ public class TeamGrpcHandler
         TeamCreationDTOMessage teamToReturn = new TeamCreationDTOMessage()
         {
             TeamName = teamToCreate.teamName,
-            Division = teamToCreate.division,
-            Initials = teamToCreate.initials
+            Initials = teamToCreate.initials,
+            Division = teamToCreate.division
         };
         return teamToReturn;
     }
@@ -32,10 +32,8 @@ public class TeamGrpcHandler
         Team teamToReturn = new Team
         {
             teamName = team.TeamName,
-            division = team.Division,
             initials = team.Initials,
-            
-            
+            division = team.Division,
         };
         return teamToReturn;
     }
