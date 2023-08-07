@@ -1,4 +1,4 @@
-package database.FootballPlayerCommands;
+package DbCommands;
 
 import Shared.FootballCoach;
 
