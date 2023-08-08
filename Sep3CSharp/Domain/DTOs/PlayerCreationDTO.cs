@@ -2,13 +2,28 @@ namespace Domain.DTOs;
 
 public class PlayerCreationDTO
 {
+
+    public int Id { get; set; }
     public string Name { get; set; }
-   // public int Age { get; set; }
- 
+
+    public DateTime DateOfBirth { get; set; }
+
+    public String Email { get; set; }
+
+    public string Role { get; set; }
     
-    public PlayerCreationDTO(string name)
+    public string TeamName { get; set; }
+    public string Position { get; set; }
+
+    
+
+    public PlayerCreationDTO(string name, DateTime dateOfBirth, string email, string role, string teamName, string position)
     {
         Name = name;
-        //Age = age;
+        DateOfBirth = dateOfBirth;
+        Email = email;
+        Role = role;
+        Position = position;
+        TeamName = teamName;
     }
 }

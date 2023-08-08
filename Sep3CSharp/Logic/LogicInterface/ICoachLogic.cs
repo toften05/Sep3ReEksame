@@ -6,4 +6,6 @@ namespace Logic.LogicInterface;
 public interface ICoachLogic
 {
     Task<Coach> CreateCoachAsync(CoachCreationDto createCoach);
+    
+    public Task<List<Coach>> GetAsync();
 }

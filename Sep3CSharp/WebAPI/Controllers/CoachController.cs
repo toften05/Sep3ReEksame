@@ -32,5 +32,20 @@ public class CoachController : ControllerBase
         }
     }
     
+    [HttpGet]
+    public async Task<ActionResult<List<Coach>>> GetAsync()
+    {
+        try
+        {
+            List<Coach> coaches = await coachLogic.GetAsync();
+            return Ok(coaches);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
     
 }

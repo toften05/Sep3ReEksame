@@ -1,7 +1,5 @@
-using Domain;
 using Domain.DTOs;
 using Domain.Model;
-using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcClient.ClientInterfaces;
 using GrpcClient.GrpcClientTypeHandlers;
@@ -12,15 +10,12 @@ namespace GrpcClient.ClientImplementations;
 
 public class PlayerGrpcClient : IFootballPlayerGrpcClient
 {
-    public PlayerGrpcClient()
-    {
-    }
-
     public async Task<Player> CreateAsync(PlayerCreationDTO PlayerDto)
     {
         var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
-        
-        PlayerMessage reply = await client.CreatePlayerAsync(FootballPlayerGrpcHandler.FromPlayerCreationDtoToMessage(PlayerDto));
+
+        PlayerMessage reply =
+            await client.CreatePlayerAsync(FootballPlayerGrpcHandler.FromPlayerCreationDtoToMessage(PlayerDto));
         Player userToReturn = FootballPlayerGrpcHandler.FromMessageToPlayer(reply);
         return userToReturn;
     }
@@ -30,7 +25,7 @@ public class PlayerGrpcClient : IFootballPlayerGrpcClient
         try
         {
             var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
-            PlayerMessage replyMessage = await client.getByUsernameAsync(new StringRequest() {String = playerName});
+            PlayerMessage replyMessage = await client.getByUsernameAsync(new StringRequest() { String = playerName });
             Player userToReturn = FootballPlayerGrpcHandler.FromMessageToPlayer(replyMessage);
             return userToReturn;
         }
@@ -48,8 +43,12 @@ public class PlayerGrpcClient : IFootballPlayerGrpcClient
         return playersToReturn;
     }
 
+    public async Task<Player> EditAsync(PlayerCreationDTO dto)
+    {
+        var client = FootballPlayerGrpcHandler.GetFootballPlayerClient();
+
+        PlayerMessage reply = await client.EditPlayerAsync(FootballPlayerGrpcHandler.FromPlayerToMessage(dto));
+        Player userToReturn = FootballPlayerGrpcHandler.FromMessageToPlayer(reply);
+        return userToReturn;
+    }
 }
-
-
-
-

@@ -6,11 +6,11 @@
 
 <PageTitle>addTeam</PageTitle>
 
-<h1>create football team</h1>
+<h1>Create Football Team</h1>
 
 <div class="form-group">
     <label for="teamName">Team Name:</label>
-    <input type="text" @bind="@teamName" @bind:event="oninput" />
+    <input type="text" @bind="@teamName" @bind:event="oninput"/>
     @if (!string.IsNullOrEmpty(resultMsg))
     {
         <label style="color: @color">@resultMsg</label>
@@ -19,7 +19,7 @@
 
 <div class="form-group">
     <label for="division">Division:</label>
-    <input type="text" @bind="@division" @bind:event="oninput" />
+    <input type="text" @bind="@division" @bind:event="oninput"/>
     @if (!string.IsNullOrEmpty(resultMsg))
     {
         <label style="color: @color">@resultMsg</label>
@@ -28,16 +28,16 @@
 
 <div class="form-group">
     <label for="initials">Initials:</label>
-    <input type="text" @bind="@initials" @bind:event="oninput" />
-     @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
+    <input type="text" @bind="@initials" @bind:event="oninput"/>
+    @if (!string.IsNullOrEmpty(resultMsg))
+    {
+        <label style="color: @color">@resultMsg</label>
+    }
 </div>
 
 <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(division))" class="acceptbtn">Create</button>
-    </div>
+    <button @onclick="Create" disabled="@(string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(division))" class="acceptbtn">Create</button>
+</div>
 
 
 @code {
@@ -46,27 +46,25 @@
     private string initials = "";
     private string resultMsg = "";
     private string color = "";
-    
+
 
     private async Task Create()
     {
         try
         {
-            await TeamService.CreateAsync(new TeamDtos(teamName, division, initials));
+            await TeamService.CreateAsync(new TeamCreationDTO(teamName, division, initials));
             teamName = "";
             division = "";
             initials = "";
             resultMsg = "Team successfully created";
             color = "green";
-  
-            
         }
         catch (Exception e)
         {
-            
             Console.WriteLine(e);
             resultMsg = e.Message;
             color = "red";
         }
     }
+
 }

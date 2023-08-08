@@ -20,16 +20,19 @@ public interface CoachCreationDtoMessageOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>string birthday = 2;</code>
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
+   * @return Whether the birthday field is set.
+   */
+  boolean hasBirthday();
+  /**
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
    * @return The birthday.
    */
-  java.lang.String getBirthday();
+  com.google.protobuf.Timestamp getBirthday();
   /**
-   * <code>string birthday = 2;</code>
-   * @return The bytes for birthday.
+   * <code>.google.protobuf.Timestamp birthday = 2;</code>
    */
-  com.google.protobuf.ByteString
-      getBirthdayBytes();
+  com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder();
 
   /**
    * <code>string initials = 3;</code>
@@ -66,4 +69,16 @@ public interface CoachCreationDtoMessageOrBuilder extends
    */
   com.google.protobuf.ByteString
       getRoleBytes();
+
+  /**
+   * <code>string teamName = 6;</code>
+   * @return The teamName.
+   */
+  java.lang.String getTeamName();
+  /**
+   * <code>string teamName = 6;</code>
+   * @return The bytes for teamName.
+   */
+  com.google.protobuf.ByteString
+      getTeamNameBytes();
 }

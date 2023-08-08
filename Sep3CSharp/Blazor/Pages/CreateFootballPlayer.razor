@@ -1,44 +1,105 @@
 @page "/CreateSoccerPlayer"
 @using Domain.DTOs
-@using DefaultNamespace
+@using Domain.Model
+@using HttpClients
 @using HttpClients.ClientInterfaces
 @inject IFootballPlayerService FootballPlayerService
+@inject ITeamService TeamService;
 
 <div class="card">
-    <h3>Create User</h3>
-    <div class="form-group field">
-        <label>User name:</label>
-        <input type="text" @bind="name" @bind:event="oninput"/>
-        @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
-    </div>
-    <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
-    </div>
+    <h3>Create Football Player</h3>
+    <EditForm Model="this">
+        <div class="form-group field">
+            <label>Name:</label>
+            <input type="text" @bind="name" @bind:event="oninput"/>
+            <label>Email:</label>
+            <input type="text" @bind="email" @bind:event="oninput"/>
+            <label>Rolle:</label>
+            <select @bind="rolle">
+                <option value="Kaptain">Kaptain</option>
+                <option value="Spiller">Spiller</option>
+                <option value="Bænkevarmer">Bænkevarmer</option>
+                <option value="Water boy">Water boy</option>
+                <!-- add more options as needed -->
+            </select>
+            <label>Date of birth:</label>
+            <InputDate @bind-Value="dateOfBirth"/>
+            <label>Position:</label>
+            <input type="text" @bind="position" @bind:event="oninput"/>
+            <label>Team:</label>
+
+            @if (teams != null)
+            {
+                <select @bind="@teamName">
+                    @foreach (var team in teams)
+                    {
+                        <option value="@team.teamName">@team.teamName</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <p>Loading teams...</p>
+            }
+            @if (!string.IsNullOrEmpty(teamName))
+            {
+                <p>You selected: @teamName</p>
+            }
+
+            @if (!string.IsNullOrEmpty(resultMsg))
+            {
+                <label style="color: @color">@resultMsg</label>
+            }
+        </div>
+        <div class="button-row">
+            <button type="submit" @onclick="Create" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Create</button>
+        </div>
+    </EditForm>
 </div>
+
 @code {
-     private string name = "";
-     private string resultMsg = "";
-     private string color = "";
-     
-     private async Task Create()
-     {
-         resultMsg = "";
- 
-         try
-         {
-             await FootballPlayerService.Create(new PlayerCreationDTO(name));
-             name = "";
-             resultMsg = "Soccer Player successfully created";
-             color = "green";
-         }
-         catch (Exception e)
-         {
-             Console.WriteLine(e);
-             resultMsg = e.Message;
-             color = "red";
-         }
-     }  
+    private string name = "";
+    private DateTime dateOfBirth = DateTime.Today;
+    private string email = "";
+    private string rolle = "";
+    private string position = "";
+    private string teamName = "";
+    private string resultMsg = "";
+    private string color = "";
+    private IEnumerable<Team>? teams;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            teams = await TeamService.getALlTeamsAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+    private async Task Create()
+    {
+        resultMsg = "";
+
+        try
+        {
+            await FootballPlayerService.Create(new PlayerCreationDTO(name, dateOfBirth, email, rolle, teamName, position));
+            name = "";
+            resultMsg = "Soccer Player successfully created";
+            color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
+    }
+
 }

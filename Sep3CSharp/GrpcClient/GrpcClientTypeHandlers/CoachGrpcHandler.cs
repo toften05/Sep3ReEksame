@@ -1,5 +1,6 @@
 ﻿using Domain.DTOs;
 using Domain.Model;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using GrpcServices;
 
@@ -21,10 +22,12 @@ public class CoachGrpcHandler
         CoachCreationDtoMessage coachToReturn = new CoachCreationDtoMessage
         {
            Name = coachCreate.fullName,
-           Birthday = coachCreate.birthday,
+           Birthday = Timestamp.FromDateTime(coachCreate.birthday.ToUniversalTime()),
            Initials = coachCreate.initials,
            Email = coachCreate.email,
-           Role = coachCreate.role
+           Role = coachCreate.role,
+           TeamName = coachCreate.teamName
+
         };
         return coachToReturn;
     }
@@ -34,12 +37,23 @@ public class CoachGrpcHandler
         Coach coachToReturn = new Coach
         {
             fullName = coach.Name,
-            birthday = coach.Birthday,
+            birthday = coach.Birthday?.ToDateTime() ?? DateTime.MinValue,
             initials = coach.Initials,
             email = coach.Email,
             role = coach.Role,
-            Id = coach.Id
+            Id = coach.Id,
+            teamName = coach.TeamName
         };
         return coachToReturn;
+    }
+    
+    public static List<Coach> FromMessageToCoaches(ListCoachMessage ListP)
+    {
+        List<Coach> coachesToReturn = new List<Coach>();
+        foreach (CoachMessage coachMessage in ListP.Coaches)
+        {
+            coachesToReturn.Add(FromMessageToCoach(coachMessage));
+        }
+        return coachesToReturn;
     }
 }

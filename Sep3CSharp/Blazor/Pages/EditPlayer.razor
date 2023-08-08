@@ -1,0 +1,138 @@
+@page "/player/edit/{playerid:int}"
+@using Domain.Model
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@using HttpClients
+@inject IFootballPlayerService FootballPlayerService
+@inject ITeamService teamService
+
+
+<h3 style="text-align: center">Edit Football Player</h3>
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div>
+        <span>@msg</span>
+    </div>
+}
+
+@if (players == null)
+{
+    <span>Loading..</span>
+}
+else if (!players.Any())
+{
+    <span>No players found</span>
+}
+else
+{
+    <EditForm Model="this">
+        <div class="form-group field">
+            <label>User name:</label>
+            <input type="text" @bind="name" @bind:event="oninput" placeholder="@oldPlayer.Name"/>
+            <label>Email:</label>
+            <input type="text" @bind="email" @bind:event="oninput" placeholder="@oldPlayer.Email"/>
+            <label>Rolle:</label>
+            <select @bind="rolle">
+                <option value="Kaptain">Kaptain</option>
+                <option value="Spiller">Spiller</option>
+                <option value="Bænkevarmer">Bænkevarmer</option>
+                <option value="Water boy">Water boy</option>
+                <!-- add more options as needed -->
+            </select>
+            <label>Date of birth:</label>
+            <InputDate @bind-Value="dateOfBirth"/>
+            <label>Position:</label>
+            <input type="text" @bind="position" @bind:event="oninput" placeholder="@oldPlayer.Position"/>
+            <label>Team:</label>
+
+            @if (teams != null)
+            {
+                <select @bind="@teamName">
+                    @foreach (var team in teams)
+                    {
+                        <option value="@team.teamName">@team.teamName</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <p>Loading teams...</p>
+            }
+            @if (!string.IsNullOrEmpty(teamName))
+            {
+                <p>You selected: @teamName</p>
+            }
+
+            @if (!string.IsNullOrEmpty(resultMsg))
+            {
+                <label style="color: @color">@resultMsg</label>
+            }
+        </div>
+        <div class="button-row">
+            <button type="submit" @onclick="Edit" disabled="@(string.IsNullOrEmpty(name))" class="acceptbtn">Save</button>
+        </div>
+    </EditForm>
+}
+
+
+@code
+{
+    [Parameter]
+    public int playerid { get; set; }
+
+    private string msg = "";
+
+    private string name = "";
+    private DateTime dateOfBirth = DateTime.Today;
+    private string email = "";
+    private string rolle = "";
+    private string position = "";
+    private string teamName = "";
+    private string resultMsg = "";
+    private string color = "";
+    private IEnumerable<Team>? teams;
+    private IEnumerable<Player> players;
+
+    private Player? oldPlayer;
+    private PlayerCreationDTO newPlayer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            players = await FootballPlayerService.GetAllPlayersAsync();
+            teams = await teamService.getALlTeamsAsync();
+
+            oldPlayer = players.First(p => p.Id == playerid);
+            Console.WriteLine(oldPlayer.Email);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+    private async Task Edit()
+    {
+        resultMsg = "";
+
+        try
+        {
+            newPlayer = new PlayerCreationDTO(name, dateOfBirth, email, rolle, teamName, position);
+            newPlayer.Id = playerid;
+            await FootballPlayerService.Edit(newPlayer);
+            name = "";
+            resultMsg = "Player successfully saved";
+            color = "green";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+            color = "red";
+        }
+    }
+
+}

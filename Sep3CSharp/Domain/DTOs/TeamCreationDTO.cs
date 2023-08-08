@@ -2,7 +2,7 @@ using Domain.Model;
 
 namespace Domain.DTOs;
 
-public class TeamDtos
+public class TeamCreationDTO
 {
     public string teamName { get; set; }
     public string division { get; set; }
@@ -12,7 +12,7 @@ public class TeamDtos
     
     public List<Coach> CoachesOnTeam { get; set; }
 
-    public TeamDtos(string teamName, string division, string initials)
+    public TeamCreationDTO(string teamName, string division, string initials)
     {
         this.teamName = teamName;
         this.division = division;
