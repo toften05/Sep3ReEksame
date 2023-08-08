@@ -1,6 +1,6 @@
-package database.FootballPlayerCommands;
+package DbCommands;
 
-import Shared.Team;
+import Shared.FootballTeam;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,15 +12,15 @@ import java.util.List;
 
 public class TeamDbCommands {
 
-    public void createTeam(Connection connection, Team team) {
+    public void createTeam(Connection connection, FootballTeam footballTeam) {
         String sql = "INSERT INTO FootballTeam(teamname, initials, division) VALUES(?,?,?); ";
         PreparedStatement preparedStatement;
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, team.getTeamName());
-            preparedStatement.setString(2, team.getInitials());
-            preparedStatement.setString(3, team.getDivision());
+            preparedStatement.setString(1, footballTeam.getTeamName());
+            preparedStatement.setString(2, footballTeam.getInitials());
+            preparedStatement.setString(3, footballTeam.getDivision());
 
             preparedStatement.executeUpdate();
             System.out.println("Team Created");
@@ -30,11 +30,11 @@ public class TeamDbCommands {
         }
     }
 
-    public List<Team> getAllTeams(Connection connection) {
+    public List<FootballTeam> getAllTeams(Connection connection) {
         String sql = "SELECT * FROM FootballTeam;";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        List<Team> teams = new ArrayList<>();
+        List<FootballTeam> footballTeams = new ArrayList<>();
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -46,14 +46,14 @@ public class TeamDbCommands {
                 String division = resultSet.getString("division");
 
 
-                Team team = new Team(name, initals, division);
-                teams.add(team);
-                System.out.println(team);
+                FootballTeam footballTeam = new FootballTeam(name, initals, division);
+                footballTeams.add(footballTeam);
+                System.out.println(footballTeam);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Football Team returned");
-        return teams;
+        return footballTeams;
     }
 }

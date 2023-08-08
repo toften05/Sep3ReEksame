@@ -1,27 +1,29 @@
+package ServiceImpl;
+
 import Domain.*;
-import Shared.Team;
-import database.DatabaseConnection.DatabaseConnection;
-import database.FootballPlayerCommands.TeamDbCommands;
+import Shared.FootballTeam;
+import DbConnection.DatabaseConnection;
+import DbCommands.TeamDbCommands;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
+public class FootballTeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
 
     @Override
     public void createTeam(TeamCreationDTOMessage request, StreamObserver<TeamMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
         TeamDbCommands dbCommands = new TeamDbCommands();
-        Team team = new Team(request.getTeamName(), request.getDivision(), request.getInitials());
+        FootballTeam footballTeam = new FootballTeam(request.getTeamName(), request.getInitials(), request.getDivision());
 
-        dbCommands.createTeam(connection, team);
+        dbCommands.createTeam(connection, footballTeam);
 
         TeamMessage response = TeamMessage.newBuilder()
-                .setTeamName(team.getTeamName())
-                .setDivision(team.getDivision())
-                .setInitials(team.getInitials())
+                .setTeamName(footballTeam.getTeamName())
+                .setDivision(footballTeam.getDivision())
+                .setInitials(footballTeam.getInitials())
                 .build();
 
         responseObserver.onNext(response);
@@ -43,7 +45,7 @@ public class TeamServiceImpl extends TeamServiceGrpc.TeamServiceImplBase {
 
         ListTeamMessage.Builder response = ListTeamMessage.newBuilder();
 
-        for (Team teams : dbCommands.getAllTeams(connection)) {
+        for (FootballTeam teams : dbCommands.getAllTeams(connection)) {
             String teamName = teams.getTeamName();
             String initials = teams.getInitials();
             String division = teams.getDivision();

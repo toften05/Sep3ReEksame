@@ -16,6 +16,14 @@ public class TeamLogic : ITeamLogic
 
     public async Task<Team> createAsync(TeamCreationDTO creationDto)
     {
+        List<Team>? teams = await _teamClient.getAsync();
+
+        foreach (var team in teams)
+        {
+            if (team.teamName == creationDto.teamName)
+                throw new Exception("Team name already taken!");
+        }
+        
         validateData(creationDto);
         Team result = await _teamClient.Create(creationDto);
 

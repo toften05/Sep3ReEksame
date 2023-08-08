@@ -17,11 +17,6 @@ public class PlayerLogic : IPlayerLogic
 
     public async Task<Player> CreateAsync(PlayerCreationDTO playerToCreate)
     {
-        Player? existing = await _footballPlayerGrpcClient.GetByPlayerNameAsync(playerToCreate.Name);
-
-        if (existing != null)
-            throw new Exception("Username already taken!");
-
         ValidateData(playerToCreate);
 
         Player created = await _footballPlayerGrpcClient.CreateAsync(playerToCreate);
@@ -47,7 +42,7 @@ public class PlayerLogic : IPlayerLogic
 
         if (playerName.Length >= 50)
             throw new Exception("Name must be less than or equal to 50 characters!");
-        
+
         if (!playeremail.Contains("@"))
         {
             throw new Exception("Email must contain a @ in order to be valid.");
@@ -67,6 +62,7 @@ public class PlayerLogic : IPlayerLogic
         {
             throw new Exception("The role must be less than or equal to 30 characters");
         }
+
         if (playerPosition.Length < 3)
         {
             throw new Exception("The position must be at least 3 characters");
@@ -75,9 +71,6 @@ public class PlayerLogic : IPlayerLogic
         if (playerPosition.Length >= 30)
         {
             throw new Exception("The position must be less than or equal 30 characters");
-        }
-        {
-            
         }
     }
 

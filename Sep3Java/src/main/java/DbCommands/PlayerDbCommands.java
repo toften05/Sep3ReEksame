@@ -1,4 +1,4 @@
-package database.FootballPlayerCommands;
+package DbCommands;
 
 import Shared.FootballPlayer;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FootballPlayerDbCommands {
+public class PlayerDbCommands {
 
     public List<FootballPlayer> getAllFootballPlayers(Connection connection) {
         String sql = "SELECT * FROM FootballPlayer;";

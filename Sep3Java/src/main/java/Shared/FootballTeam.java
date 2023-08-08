@@ -2,16 +2,16 @@ package Shared;
 
 import java.util.*;
 
-public class Team {
+public class FootballTeam {
     private String teamName;
-    private String division;
     private String initials;
+    private String division;
     private List<FootballPlayer> PlayersOnTeam;
 
-    public Team(String teamName, String division, String initials) {
+    public FootballTeam(String teamName, String initials, String division) {
         this.teamName = teamName;
-        this.division = division;
         this.initials = initials;
+        this.division = division;
         PlayersOnTeam = new ArrayList<>();
 
     }

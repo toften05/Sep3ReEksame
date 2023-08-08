@@ -1,9 +1,11 @@
+package ServiceImpl;
+
 import Domain.*;
 import Shared.FootballPlayer;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Timestamp;
-import database.DatabaseConnection.DatabaseConnection;
-import database.FootballPlayerCommands.FootballPlayerDbCommands;
+import DbConnection.DatabaseConnection;
+import DbCommands.PlayerDbCommands;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
@@ -19,7 +21,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         System.out.println("getAllPlayers called");
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+        PlayerDbCommands dbCommands = new PlayerDbCommands();
 
         ListPlayerMessage.Builder response = ListPlayerMessage.newBuilder();
 
@@ -70,7 +72,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
     public void createPlayer(PlayerCreationDTOMessage request, StreamObserver<PlayerMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+        PlayerDbCommands dbCommands = new PlayerDbCommands();
 
         long seconds = request.getBirthday().getSeconds();
         Date sqlDate = new Date(seconds * 1000);
@@ -102,7 +104,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
     public void getByUsername(StringRequest request, StreamObserver<PlayerMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+        PlayerDbCommands dbCommands = new PlayerDbCommands();
 
         FootballPlayer player = dbCommands.getPlayerByUsername(connection, request.getString());
 
@@ -130,7 +132,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
     public void editPlayer(PlayerMessage request, StreamObserver<PlayerMessage> responseObserver) {
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+        PlayerDbCommands dbCommands = new PlayerDbCommands();
 
         long seconds = request.getBirthday().getSeconds();
         Date sqlDate = new Date(seconds * 1000);
@@ -163,7 +165,7 @@ public class FootballPlayerServiceImpl extends FootballPlayerServiceGrpc.Footbal
         System.out.println("deletePlayer called");
         DatabaseConnection db = new DatabaseConnection();
         Connection connection = db.getConnection();
-        FootballPlayerDbCommands dbCommands = new FootballPlayerDbCommands();
+        PlayerDbCommands dbCommands = new PlayerDbCommands();
 
         dbCommands.deleteFootballPlayer(connection, request.getId());
 
