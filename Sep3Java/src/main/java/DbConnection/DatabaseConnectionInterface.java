@@ -1,4 +1,4 @@
-package database.DatabaseConnection;
+package DbConnection;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

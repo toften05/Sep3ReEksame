@@ -13,8 +13,8 @@ message  TeamCreationDTOMessage{
 
 message  TeamMessage{
   string teamName = 1;
-  string division = 2;
-  string initials = 3;
+  string initials = 2;
+  string division = 3;
 }
 
 message AllTeamsRequest{

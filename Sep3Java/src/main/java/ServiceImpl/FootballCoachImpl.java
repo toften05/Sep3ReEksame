@@ -1,8 +1,10 @@
+package ServiceImpl;
+
 import Domain.*;
 import Shared.FootballCoach;
 import com.google.protobuf.Timestamp;
-import database.DatabaseConnection.DatabaseConnection;
-import database.FootballPlayerCommands.CoachDbCommands;
+import DbConnection.DatabaseConnection;
+import DbCommands.CoachDbCommands;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Connection;
